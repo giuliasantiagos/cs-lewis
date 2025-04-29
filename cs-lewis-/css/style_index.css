@@ -167,20 +167,20 @@ body{
     padding-left: 0;
 }
 
-/* Footer */
+/* Divisão */
 
-.footer{
+.linha{
     height: var(--tamanho-footer);
     background-color: var(--caramelo);
 }
 
-.footer .container .boxes{
+.linha .container .boxes{
     display: flex;
     justify-content: space-evenly;
     width: 100%;
 }
 
-.boxes .box{
+.linha .boxes .box{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -194,8 +194,11 @@ body{
 
 /* Top 3 livros mais populares */
 
-.page .container{
+.page{
     height: var(--tamanho-banner);
+}
+
+.page .container{
     display: flex;
     flex-direction: column;
 }
@@ -214,17 +217,26 @@ body{
     cursor: context-menu;
     text-align: center;
     color: var(--cinza);
-    padding-top: 10px;
+    padding-top: 15px;
 }
 
 .page .boxes{
+    padding-top: 15px;
     display: flex;
-    justify-content: space-around;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.page .boxes .box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .page .boxes .box a{
-    text-align: justify;
+    text-align: center;
     font-size: 12px;
+    width: 60%;
 }
 
 .page .boxes .box img{
@@ -236,3 +248,80 @@ body{
     padding: 15px;
 }
 
+/* Divisão 2 */
+
+.divisao{
+    height: var(--tamanho-footer);
+    background-color: var(--laranja);
+}
+
+.divisao .container .text{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 18px;
+    gap: 25px;
+}
+
+.divisao p{
+    width: 25%;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+}
+
+/* Sobre */
+
+.social{
+    height: var(--tamanho-banner);
+}
+
+.social .container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+}
+
+.social .container .titulo{
+    font-size: 35px;
+}
+
+.social .container .subtitulo{
+    font-size: 25px;
+    color: var(--cinza);
+    margin: 0;
+}
+
+.social .container .boxes{
+    align-items: center;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.social .boxes .box{
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    width: 60%;
+}
+
+.social .box p{
+    width: 90%;
+    font-size: 16px;
+}
+
+.social .box img{
+    width: 80%;
+    border-radius: 60px;
+    padding: 10px;
+}
+
+.social .box h2{
+    margin: 0;
+    align-self: center;
+}
