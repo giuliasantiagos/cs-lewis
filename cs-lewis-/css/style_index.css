@@ -8,13 +8,15 @@ body{
 
 :root{
     --tamanho-header: 80px;
-    --tamanho-footer: 90px;
-    --tamanho-banner: calc(100vh - var(--tamanho-header));
+    --tamanho-footer: 100px;
+    --tamanho-banner: calc(100vh - var(--tamanho-header) + 
+    var(--tamanho-footer) + 30px);
 
     --cor-fundo: #FEF2DE;
     --laranja: #F49459;
     --caramelo: #C3905E;
     --marrom: #4E3B28;
+    --cinza: #3E3E3E;
 }
 
 /* Header */
@@ -119,7 +121,9 @@ body{
 .pagina .content{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding: 20px;
+    padding: 5px;
+    text-align: center;
+    margin: 0;
 }
 
 .pagina .titulo{
@@ -131,16 +135,104 @@ body{
     justify-content: center;
 }
 
-.imagem{
-    width: 80%;
-    padding: 30px;
+.pagina .content .bloco{
+    text-align: justify;
+    padding-left: 70px;
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    padding-top: 40px;
 }
 
-.pagina .content .image a{
-    padding: 5px;
-    bottom: 10px;
+.pagina .content .bloco #imagem{
     width: 100%;
-    font-size: 12px;
-    display: block;
-    text-align: justify;
+    border-radius: 5px;    
 }
+
+.pagina .content p{
+    margin-top: 0;
+    padding-top: 5px;
+    bottom: 10px;
+    font-size: 10px;
+}
+
+.pagina .text{
+    padding-right: 70px;
+    text-align: justify;
+    margin-top: 10px;
+}
+
+.text h3{
+    font-size: 16px;
+    padding-left: 0;
+}
+
+/* Footer */
+
+.footer{
+    height: var(--tamanho-footer);
+    background-color: var(--caramelo);
+}
+
+.footer .container .boxes{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.boxes .box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 15px 0;
+}
+
+.box p{
+    font-size: 20px;
+}
+
+/* Top 3 livros mais populares */
+
+.page .container{
+    height: var(--tamanho-banner);
+    display: flex;
+    flex-direction: column;
+}
+
+.page .container .titulo{
+    font-size: 35px;
+    margin: 0;
+    cursor: context-menu;
+    text-align: center;
+    padding-top: 40px;
+}
+
+.page .container .subtitulo{
+    margin: 5px;
+    font-size: 25px;
+    cursor: context-menu;
+    text-align: center;
+    color: var(--cinza);
+    padding-top: 10px;
+}
+
+.page .boxes{
+    display: flex;
+    justify-content: space-around;
+}
+
+.page .boxes .box a{
+    text-align: justify;
+    font-size: 12px;
+}
+
+.page .boxes .box img{
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    width: 60%;
+    border-radius: 20px; 
+    padding: 15px;
+}
+
