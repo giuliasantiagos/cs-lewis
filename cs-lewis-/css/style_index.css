@@ -325,3 +325,145 @@ body{
     margin: 0;
     align-self: center;
 }
+
+/* Divisão 3 */
+
+
+.divisao3{
+    height: var(--tamanho-footer);
+    background-color: var(--caramelo);
+}
+
+.divisao3 .container .text{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 18px;
+    gap: 25px;
+}
+
+.divisao3 p{
+    width: 25%;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+}
+
+.divisao3 a{
+    font-style: none;
+    color: black;
+}
+
+/* Valores e missão */
+
+.missao{
+    height: var(--tamanho-banner);
+}
+
+.missao .container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+}
+
+.missao .container .titulo{
+    font-size: 35px;
+}
+
+.missao .container .subtitulo{
+    font-size: 25px;
+    color: var(--cinza);
+    margin: 0;
+}
+
+.missao .container .boxes{
+    align-items: center;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.missao .boxes .box{
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    width: 45%;
+}
+
+.missao .box p{
+    width: 70%;
+    font-size: 16px;
+}
+
+
+.missao .box h2{
+    align-self: center;
+    text-align: justify;
+    width: 45%;
+    margin: 0;
+    padding: 0;
+}
+
+
+.missao img{
+    width: 30%;
+    border-radius: 60px;
+    padding: 10px;
+}
+
+
+/* Banner-final */
+
+.banner-final{
+    height: var(--tamanho-banner);
+    color: black;
+    display: flex;
+}
+
+.banner-final .container{ 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.banner-final .container .titulo{
+    font-size: 35px;
+    cursor: context-menu;
+}
+
+.banner-final .container .texto{
+    padding-top: 30px;
+    margin: 5px;
+    font-size: 25px;
+    cursor: context-menu;
+}
+
+/**/
+
+.footer{
+    height: var(--tamanho-footer+20px);
+    background-color: var(--caramelo);
+    margin: 0;
+    padding: 0;
+}
+
+.footer .container .text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 18px;
+    padding: 10px;
+    gap: 0;
+}
+
+.footer .container .text span{
+    font-weight: 700;
+    font-size: 20px;
+}
