@@ -3,9 +3,8 @@
 
 ## Objetivos do Projeto
 - [x] Trazer informações sobre a vida de C.S Lewis
-- [x] Indicar obras de Lewis publicadas pela HarperCollins e Thomas Nelson
 - [x] Incluir página de cadastro e login
-- [x] Dashboards
+- [x] Incluir página de dashboards, com gráficos comparativos e KPI's de livros lidos
 
 ## Protótipo do website
 - Página Inicial
