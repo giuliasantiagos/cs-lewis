@@ -1,16 +1,8 @@
-body{
-    margin: 0;
-    padding: 0;
-    background-color: #FEF2DE;
-    font-family: 'Jacques Francois', serif;
-    letter-spacing: 1px;
-}
-
 :root{
-    --tamanho-header: 80px;
-    --tamanho-footer: 100px;
-    --tamanho-banner: calc(100vh - var(--tamanho-header) + 
-    var(--tamanho-footer) + 30px);
+    --tamanho-header: 10vh;
+    --tamanho-footer: 15vh;
+    --tamanho-banner: calc(100vh - var(--tamanho-header) - 
+    var(--tamanho-footer));
 
     --cor-fundo: #FEF2DE;
     --laranja: #F49459;
@@ -18,6 +10,15 @@ body{
     --marrom: #4E3B28;
     --cinza: #3E3E3E;
 }
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: var(--cor-fundo);
+    font-family: 'Jacques Francois', serif;
+    letter-spacing: 1px;
+}
+
 
 /* Header */
 
@@ -33,6 +34,7 @@ body{
 
 .header .logo{
     width: 30%;
+    max-width: 100%;
 }
 
 .header .container{
@@ -140,12 +142,12 @@ body{
     padding-left: 70px;
     display: flex;
     flex-direction: column;
-    width: 350px;
     padding-top: 40px;
 }
 
-.pagina .content .bloco #imagem{
-    width: 100%;
+.pagina .content .bloco img{
+    width: 80%;
+    max-width: 100%;
     border-radius: 5px;    
 }
 
@@ -162,7 +164,7 @@ body{
     margin-top: 10px;
 }
 
-.text h3{
+.text p{
     font-size: 16px;
     padding-left: 0;
 }
@@ -244,6 +246,7 @@ body{
     flex-direction: column;
     align-items: center;    
     width: 60%;
+    max-width: 100%;
     border-radius: 20px; 
     padding: 15px;
 }
