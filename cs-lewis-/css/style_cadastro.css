@@ -1,0 +1,89 @@
+:root{
+    --tamanho-header: 80px;
+    --tamanho-banner: calc(100vh - var(--tamanho-header) + 130px);
+
+    --cor-fundo: #FEF2DE;
+    --laranja: #F49459;
+    --caramelo: #C3905E;
+    --marrom: #4E3B28;
+    --cinza: #3E3E3E;
+    --cinza-claro: #D9D9D9;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: var(--laranja);
+    font-family: 'Jacques Francois', serif;
+    letter-spacing: 1px;
+}
+
+/* Header */
+.header{
+    display: flex;
+    height: var(--tamanho-header);
+    justify-content: center;
+    align-items: center;
+}
+
+.header .container{
+    width: 80%;
+    height: 100%;
+}
+
+.header .container .logo{
+    width: 10%;
+}
+
+/* Banner */
+.banner{
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner .container{
+    background-color: var(--cor-fundo);
+    display: flex;
+    flex-direction: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 10px;
+    width: 50%;
+}
+
+.banner .container .image{
+    width: 60%;
+}
+
+.image img{
+    width: 80%;
+    border-radius: 10px;
+}
+
+.banner .container .div-inputs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 50px 0 50px;
+    gap: 10px;
+}
+
+.div-inputs h1{
+    font-size: 30px;
+    text-align: center;
+}
+
+.div-inputs input{
+    width: 100%;
+    height: 15px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    background-color: var(--cinza-claro);
+    padding: 5px;
+}
+
+.div-inputs p{
+    font-size: 12px;
+}
