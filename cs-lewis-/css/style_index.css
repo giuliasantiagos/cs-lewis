@@ -139,23 +139,23 @@ body{
 
 .pagina .content .bloco{
     text-align: justify;
-    padding-left: 70px;
+    padding-left: 100px;
     display: flex;
     flex-direction: column;
     padding-top: 40px;
 }
 
 .pagina .content .bloco img{
-    width: 80%;
-    max-width: 100%;
+    width: 60%;
     border-radius: 5px;    
 }
 
-.pagina .content p{
+.pagina .content .bloco p{
     margin-top: 0;
     padding-top: 5px;
     bottom: 10px;
-    font-size: 10px;
+    font-size: 16px;
+    width: 60%;
 }
 
 .pagina .text{
@@ -165,7 +165,7 @@ body{
 }
 
 .text p{
-    font-size: 16px;
+    font-size: 15px;
     padding-left: 0;
 }
 
