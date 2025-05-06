@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C.S Livros</title>
+    <link rel="stylesheet" href="../css/style_inicial.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jacques+Francois&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header -->
+
+    <div class="header">
+        <div class="container">
+            <a  href="#home">
+            <img class="logo" src="../img/logo_retro.png">
+            </a>
+
+            <ul class="navbar">
+                <li><a href="#organizar">Organizar leitura</a></li>
+                <li><a href="#info">Informações de suas leitura</a></li>
+                <button class="button" onclick="document.location='index.html'">Sair</button>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Banner -->
+
+    <div class="banner" id="home">
+        <div class="container">
+            <h1 class="titulo">Vida e obras de C.S Lewis</h1>
+            <h2 class="subtitulo">Publicadas pela Thomas Nelson e HarperCollins</h2>
+            <button class="button" onclick="document.location='#organizar'">Organizar leitura</button>
+        </div>
+    </div>
+
+    <!-- Section slideshow/caroussel -->
+
+    <section class="caroussel">
+
+    <div class="container">
+        <div class="div_slide">
+        <div class="number">1 / 3</div>
+        <img src="../img/livros/livro_cristianismo.PNG" style="width:20%" alt="Livro Cristianismo Puro e Simples">
+        <div class="text">Cristianismo Puro e Simples</div>
+        </div>
+    
+        <div class="div_slide">
+        <div class="number">2 / 3</div>
+        <img src="../img/livros/livro_cartas.PNG" style="width:20%" alt="Livro Cartas de um Diabo a Seu Aprendiz">
+        <div class="text">Cartas de um Diabo a Seu Aprendiz</div>
+        </div>
+    
+        <div class="div_slide">
+        <div class="number">3 / 3</div>
+        <img src="../img/livros/grande_divorcio.PNG" style="width:20%" alt="Livro O Grande Divórcio">
+        <div class="text">O Grande Divórcio</div>
+        </div>
+    
+        <a class="anterior" onclick="slideAnterior(-1)">&#10094;</a>
+        <a class="proximo" onclick="slideProximo(1)">&#10095;</a>
+    </div>
+    <br>
+    
+    <div>
+        <span class="dot" onclick="slideAtual(1)"></span>
+        <span class="dot" onclick="slideAtual(2)"></span>
+        <span class="dot" onclick="slideAtual(3)"></span>
+    </div>
+
+    </section>
+    
+</body>
+
+    <!--<script src="../js/script.js"></script>-->
+
+</html>

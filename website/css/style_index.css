@@ -1,0 +1,482 @@
+:root{
+    --tamanho-header: 10vh;
+    --tamanho-footer: 15vh;
+    --tamanho-banner: calc(100vh - var(--tamanho-header) - 
+    var(--tamanho-footer));
+
+    --cor-fundo: #FEF2DE;
+    --laranja: #F49459;
+    --caramelo: #C3905E;
+    --marrom: #4E3B28;
+    --cinza: #3E3E3E;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: var(--cor-fundo);
+    font-family: 'Jacques Francois', serif;
+    letter-spacing: 1px;
+}
+
+
+/* Header */
+
+.header{
+    height: var(--tamanho-header);
+    position: fixed;
+    width: 100%;
+    background-color: var(--cor-fundo);
+}
+
+.header .logo{
+    width: 30%;
+    max-width: 100%;
+}
+
+.header .container{
+    display: flex;
+    width: 80%;
+    margin: auto;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.header a{
+    text-decoration: none;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar{
+    width: 300%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+}
+
+.button{
+    width: 15%;
+    height: 30px;
+    background-color: var(--marrom);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Banner */
+
+.banner{
+    height: var(--tamanho-banner);
+    color: black;
+    background-color: var(--laranja);
+}
+
+.banner .container{ 
+    display: flex;
+    width: 80%;
+    margin: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.banner .container .titulo{
+    font-size: 50px;
+    margin: 0;
+    cursor: context-menu;
+}
+
+.banner .container .subtitulo{
+    margin: 5px;
+    font-size: 35px;
+    cursor: context-menu;
+}
+
+.banner .container .button{
+    width: 25%;
+    height: 10%;
+    background-color: var(--marrom);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+/* Vida de Lewis */
+
+.pagina{
+    height: var(--tamanho-banner);
+    color: black;
+    background-color: var(--cor-fundo);
+}
+
+.pagina .container{
+    display: grid;
+    height: 100%;
+}
+
+.pagina .content{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 5px;
+    text-align: center;
+    margin: 0;
+}
+
+.pagina .titulo{
+    font-size: 35px;
+    margin: 0;
+    cursor: context-menu;
+    padding-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.pagina .content .bloco{
+    text-align: justify;
+    padding-left: 100px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 40px;
+}
+
+.pagina .content .bloco img{
+    width: 60%;
+    border-radius: 5px;    
+}
+
+.pagina .content .bloco p{
+    margin-top: 0;
+    padding-top: 5px;
+    bottom: 10px;
+    font-size: 16px;
+    width: 60%;
+}
+
+.pagina .text{
+    padding-right: 70px;
+    text-align: justify;
+    margin-top: 10px;
+}
+
+.text p{
+    font-size: 15px;
+    padding-left: 0;
+}
+
+/* Divisão */
+
+.linha{
+    height: var(--tamanho-footer);
+    background-color: var(--caramelo);
+}
+
+.linha .container .boxes{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.linha .boxes .box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 15px 0;
+}
+
+.box p{
+    font-size: 20px;
+}
+
+/* Top 3 livros mais populares */
+
+.page{
+    height: var(--tamanho-banner);
+}
+
+.page .container{
+    display: flex;
+    flex-direction: column;
+}
+
+.page .container .titulo{
+    font-size: 35px;
+    margin: 0;
+    cursor: context-menu;
+    text-align: center;
+    padding-top: 40px;
+}
+
+.page .container .subtitulo{
+    margin: 5px;
+    font-size: 25px;
+    cursor: context-menu;
+    text-align: center;
+    color: var(--cinza);
+    padding-top: 15px;
+}
+
+.page .boxes{
+    padding-top: 15px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.page .boxes .box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page .boxes .box a{
+    text-align: center;
+    font-size: 12px;
+    width: 60%;
+}
+
+.page .boxes .box img{
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    width: 60%;
+    max-width: 100%;
+    border-radius: 20px; 
+    padding: 15px;
+}
+
+/* Divisão 2 */
+
+.divisao{
+    height: var(--tamanho-footer);
+    background-color: var(--laranja);
+}
+
+.divisao .container .text{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 18px;
+    gap: 25px;
+}
+
+.divisao p{
+    width: 25%;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+}
+
+/* Sobre */
+
+.social{
+    height: var(--tamanho-banner);
+}
+
+.social .container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+}
+
+.social .container .titulo{
+    font-size: 35px;
+}
+
+.social .container .subtitulo{
+    font-size: 25px;
+    color: var(--cinza);
+    margin: 0;
+}
+
+.social .container .boxes{
+    align-items: center;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.social .boxes .box{
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    width: 60%;
+}
+
+.social .box p{
+    width: 90%;
+    font-size: 16px;
+}
+
+.social .box img{
+    width: 80%;
+    border-radius: 60px;
+    padding: 10px;
+}
+
+.social .box h2{
+    margin: 0;
+    align-self: center;
+}
+
+/* Divisão 3 */
+
+
+.divisao3{
+    height: var(--tamanho-footer);
+    background-color: var(--caramelo);
+}
+
+.divisao3 .container .text{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 18px;
+    gap: 25px;
+}
+
+.divisao3 p{
+    width: 25%;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+}
+
+.divisao3 a{
+    font-style: none;
+    color: black;
+}
+
+/* Valores e missão */
+
+.missao{
+    height: var(--tamanho-banner);
+}
+
+.missao .container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+}
+
+.missao .container .titulo{
+    font-size: 35px;
+}
+
+.missao .container .subtitulo{
+    font-size: 25px;
+    color: var(--cinza);
+    margin: 0;
+}
+
+.missao .container .boxes{
+    align-items: center;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.missao .boxes .box{
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    width: 45%;
+}
+
+.missao .box p{
+    width: 70%;
+    font-size: 16px;
+}
+
+
+.missao .box h2{
+    align-self: center;
+    text-align: justify;
+    width: 45%;
+    margin: 0;
+    padding: 0;
+}
+
+
+.missao img{
+    width: 30%;
+    border-radius: 60px;
+    padding: 10px;
+}
+
+
+/* Banner-final */
+
+.banner-final{
+    height: var(--tamanho-banner);
+    color: black;
+    display: flex;
+}
+
+.banner-final .container{ 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    display: flex;
+    width: 80%;
+    margin: auto;
+}
+
+.banner-final .container .titulo{
+    font-size: 35px;
+    cursor: context-menu;
+}
+
+.banner-final .container .texto{
+    padding-top: 30px;
+    margin: 5px;
+    font-size: 25px;
+    cursor: context-menu;
+}
+
+/**/
+
+.footer{
+    height: var(--tamanho-footer+20px);
+    background-color: var(--caramelo);
+    margin: 0;
+    padding: 0;
+}
+
+.footer .container .text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 18px;
+    padding: 10px;
+    gap: 0;
+}
+
+.footer .container .text span{
+    font-weight: 700;
+    font-size: 20px;
+}
