@@ -8,19 +8,19 @@
 
 ## Protótipo do website
 - Página Inicial
-![Página Inicial](cs-lewis-/img/prototipo-website/pagina_inicial.PNG)
+![Página Inicial](website/img/prototipo-website/pagina_inicial.PNG)
 
 - Vida do autor
-![Vida do autor](cs-lewis-/img/prototipo-website/vida_lewis.PNG)
+![Vida do autor](website/img/prototipo-website/vida_lewis.PNG)
 
 - Top 3 livros mais populares
-![Top 3 livros](cs-lewis-/img/prototipo-website/top_03.PNG)
+![Top 3 livros](website/img/prototipo-website/top_03.PNG)
 
 - Sobre
-![Sobre](cs-lewis-/img/prototipo-website/sobre.PNG)
+![Sobre](website/img/prototipo-website/sobre.PNG)
 
 - Missão e Valores
-![Missão e Valores](cs-lewis-/img/prototipo-website/missao_valores.PNG)
+![Missão e Valores](website/img/prototipo-website/missao_valores.PNG)
 
 - Citação de Lewis
-![Sobre](cs-lewis-/img/prototipo-website/citacao_footer.PNG)
+![Sobre](website/img/prototipo-website/citacao_footer.PNG)
