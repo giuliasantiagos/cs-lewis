@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,14 +10,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jacques+Francois&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
     <!-- Header -->
 
     <div class="header">
         <div class="container">
-            <a  href="#home">
-            <img class="logo" src="../img/logo_retro.png">
+            <a href="#home">
+                <img class="logo" src="../img/logo_retro.png">
             </a>
 
             <ul class="navbar">
@@ -41,40 +43,96 @@
 
     <section class="caroussel">
 
-    <div class="container">
-        <div class="div_slide">
-        <div class="number">1 / 3</div>
-        <img src="../img/livros/livro_cristianismo.PNG" style="width:20%" alt="Livro Cristianismo Puro e Simples">
-        <div class="text">Cristianismo Puro e Simples</div>
+        <div class="container">
+            <div class="div_slide">
+                <div class="number">1 / x</div>
+                <img src="../img/livros/livro_cristianismo.PNG" style="width:20%"
+                    alt="Livro Cristianismo Puro e Simples">
+                <div class="text">Cristianismo Puro e Simples</div>
+            </div>
+
+            <div class="div_slide">
+                <div class="number">2 / x</div>
+                <img src="../img/livros/livro_cartas.PNG" style="width:20%"
+                    alt="Livro Cartas de um Diabo a Seu Aprendiz">
+                <div class="text">Cartas de um Diabo a Seu Aprendiz</div>
+            </div>
+
+            <div class="div_slide">
+                <div class="number">3 / x</div>
+                <img src="../img/livros/grande_divorcio.PNG" style="width:20%" alt="Livro O Grande Divórcio">
+                <div class="text">O Grande Divórcio</div>
+            </div>
+
+            <div class="div_slide">
+                <div class="number">4 / x</div>
+                <img src="../img/livros/banco_reus.PNG" style="width:20%" alt="Livro Deus no Banco dos Réus">
+                <div class="text">Deus no Banco dos Réus</div>
+            </div>
+
+            <div class="div_slide">
+                <div class="number">5 / x</div>
+                <img src="../img/livros/cartas_malcolm.PNG" style="width:20%" alt="Livro Cartas a Malcolm">
+                <div class="text">Cartas a Malcolm</div>
+            </div>
+
+            <div class="div_slide">
+                <div class="number">6 / x</div>
+                <img src="../img/livros/prefacio-paraiso.PNG" style="width:20%" alt="Livro Prefácio ao Paraíso Perdido">
+                <div class="text">Prefácio ao Paraíso Perdido</div>
+            </div>
+
+            <div class="div_slide">
+                <div class="number">7 / x</div>
+                <img src="../img/livros/reflexoes_cristas.PNG" style="width:20%" alt="Livro Reflexões Cristãs">
+                <div class="text">Reflexões Cristãs</div>
+            </div>
+
+            <div class="div_slide">
+                <div class="number">8 / x</div>
+                <img src="../img/livros/regresso_peregrino.PNG" style="width:20%" alt="Livro O Regresso do Peregrino">
+                <div class="text">O Regresso do Peregrino</div>
+            </div>
+
+            <div class="div_slide">
+                <div class="number">9 / x</div>
+                <img src="../img/livros/sobre_historias.PNG" style="width:20%" alt="Livro Sobre Histórias">
+                <div class="text">Sobre Histórias</div>
+            </div>
+
+            <div class="div_slide">
+                <div class="number">10 / x</div>
+                <img src="../img/livros/torre_sombria.PNG" style="width:20%" alt="Livro A Torre Sombria">
+                <div class="text">A Torre Sombria</div>
+            </div>
+
+            <div class="div_slide">
+                <div class="number">11 / x</div>
+                <img src="../img/livros/trilogia_cosmica.PNG" style="width:20%" alt="Livro A Trilogia Cósmica">
+                <div class="text">A Trilogia Cósmica</div>
+            </div>
+
+            <div class="div_slide">
+                <div class="number">12 / x</div>
+                <img src="../img/livros/ultima_noite.PNG" style="width:20%" alt="Livro A Última Noite do Mundo">
+                <div class="text">A Última Noite do Mundo</div>
+            </div>
+
+            <a class="anterior" onclick="slideAnterior(-1)">&#10094;</a>
+            <a class="proximo" onclick="slideProximo(1)">&#10095;</a>
         </div>
-    
-        <div class="div_slide">
-        <div class="number">2 / 3</div>
-        <img src="../img/livros/livro_cartas.PNG" style="width:20%" alt="Livro Cartas de um Diabo a Seu Aprendiz">
-        <div class="text">Cartas de um Diabo a Seu Aprendiz</div>
+        <br>
+
+        <div>
+            <span class="dot" onclick="slideAtual(1)"></span>
+            <span class="dot" onclick="slideAtual(2)"></span>
+            <span class="dot" onclick="slideAtual(3)"></span>
         </div>
-    
-        <div class="div_slide">
-        <div class="number">3 / 3</div>
-        <img src="../img/livros/grande_divorcio.PNG" style="width:20%" alt="Livro O Grande Divórcio">
-        <div class="text">O Grande Divórcio</div>
-        </div>
-    
-        <a class="anterior" onclick="slideAnterior(-1)">&#10094;</a>
-        <a class="proximo" onclick="slideProximo(1)">&#10095;</a>
-    </div>
-    <br>
-    
-    <div>
-        <span class="dot" onclick="slideAtual(1)"></span>
-        <span class="dot" onclick="slideAtual(2)"></span>
-        <span class="dot" onclick="slideAtual(3)"></span>
-    </div>
 
     </section>
-    
+
 </body>
 
-    <!--<script src="../js/script.js"></script>-->
+<!--<script src="../js/script.js"></script>-->
 
 </html>
