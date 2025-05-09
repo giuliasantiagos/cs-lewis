@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <style>
+        .slides {
+          position: relative;
+          width: 300px;
+          height: 200px;
+          overflow: hidden;
+        }
+      
+        .slide {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background: lightgray;
+          opacity: 0;
+          transition: opacity 0.5s;
+        }
+      
+        #s1:checked ~ .slides .s1,
+        #s2:checked ~ .slides .s2,
+        #s3:checked ~ .slides .s3 {
+          opacity: 1;
+        }
+      
+        .navegacao {
+          margin-top: 10px;
+        }
+      
+        .navegacao label {
+          display: inline-block;
+          width: 15px;
+          height: 15px;
+          margin: 0 5px;
+          background-color: #bbb;
+          border-radius: 50%;
+          cursor: pointer;
+        }
+      
+        /* Dot ativo (muda a cor) */
+        #s1:checked ~ .navegacao label[for="s1"],
+        #s2:checked ~ .navegacao label[for="s2"],
+        #s3:checked ~ .navegacao label[for="s3"] {
+          background-color: #333;
+        }
+      </style>
+      
+      <input type="radio" name="slide" id="s1" checked hidden>
+      <input type="radio" name="slide" id="s2" hidden>
+      <input type="radio" name="slide" id="s3" hidden>
+      
+      <div class="slides">
+        <div class="slide s1">Slide 1</div>
+        <div class="slide s2">Slide 2</div>
+        <div class="slide s3">Slide 3</div>
+      </div>
+      
+      <div class="navegacao">
+        <label for="s1"></label>
+        <label for="s2"></label>
+        <label for="s3"></label>
+      </div>
+      
+    
+</body>
+</html>
