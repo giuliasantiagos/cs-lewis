@@ -1,35 +1,24 @@
-let slideIndex = 1;
-mostrarSlides(slideIndex);
-
-// Função para passar os slides (setas!)
-function proximoSlide(passar) {
-mostrarSlides(slideIndex += passar);
-}
-
-// Função para ir a um slide específico
-function slideAtual(passar) {
-mostrarSlides(slideIndex = passar);
-}
-
-function mostrarSlides(passar) {
+var slideIndex = 0;
 
     let slides = document.getElementsByClassName("div-slide");
-    let dots = document.getElementsByClassName("dot");
+    var qtdSlides;
 
-    let qtdSlides = slides.length;
-    let qtdDots = dots.length;
+function mostrarSlides(slideIndex) {
 
-    if (passar > qtdSlides){
-        slideIndex = 1;
-    }
-    
-    if (passar < 1){
-        slideIndex = qtdSlides;
-    }
+    qtdSlides = slides.length;
 
-    for (var i = 0; i < qtdSlides; i++){
+    for(var i = 0; i < qtdSlides; i++){
         slides[i].style.display = "none";
     }
 
-    slides[slideIndex-1].style.display = "block";
+    slides[slideIndex-i].style.display = "block";
+
 }
+
+function proximoSlide(){
+    qtdSlides = slides.length;
+    slideIndex = (slideIndex+1) % qtdSlides;
+    mostrarSlides(slideIndex);
+}
+
+mostrarSlides(slideIndex);
