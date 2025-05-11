@@ -1,23 +1,35 @@
-var slideIndex = 0;
-
+    let slideIndex = 0;
     let slides = document.getElementsByClassName("div-slide");
-    var qtdSlides;
 
 function mostrarSlides(slideIndex) {
 
-    qtdSlides = slides.length;
-
-    for(var i = 0; i < qtdSlides; i++){
+    for(var i = 0; i < slides.length; i++){
         slides[i].style.display = "none";
     }
 
-    slides[slideIndex-i].style.display = "block";
+    slides[slideIndex].style.display = "block";
 
 }
 
 function proximoSlide(){
-    qtdSlides = slides.length;
-    slideIndex = (slideIndex+1) % qtdSlides;
+
+    if(slideIndex > slides.length){
+        slideIndex = 0
+    } else{
+        slideIndex += 1;
+    }
+
+    mostrarSlides(slideIndex);
+}
+
+function anteriorSlide(){
+
+    if(slideIndex - 1 <= 0){
+        slideIndex = slides.length - 1;
+    } else{
+        slideIndex -= 1;
+    }
+
     mostrarSlides(slideIndex);
 }
 
