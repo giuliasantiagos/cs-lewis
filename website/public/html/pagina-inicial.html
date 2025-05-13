@@ -41,25 +41,30 @@
 
     <!-- Section slideshow/caroussel -->
 
-    <section class="caroussel">
+    <section class="caroussel" id="organizar">
+
+        <h1>Organizar leitura</h1>
 
         <div class="container">
 
-            <a class="anterior" onclick="anteriorSlide()">&#10094;</a>
+            <a class="anterior" onclick="passarSlide(-1)">&#10094;</a>
 
             <div class="div-slide">
+                <div class="number">1 / x</div>
                 <img src="../img/livros/livro_cristianismo.PNG" alt="Livro Cristianismo Puro e Simples">
-                <!--<div class="text">Cristianismo Puro e Simples</div>-->
+                <div class="text">Cristianismo Puro e Simples</div>
             </div>
 
             <div class="div-slide">
+                <div class="number">2 / x</div>
                 <img src="../img/livros/livro_cartas.PNG" alt="Livro Cartas de um Diabo a Seu Aprendiz">
-                <!-- <div class="text">Cartas de um Diabo a Seu Aprendiz</div> -->
+                <div class="text">Cartas de um Diabo a Seu Aprendiz</div>
             </div>
 
             <div class="div-slide">
+                <div class="number">3 / x</div>
                 <img src="../img/livros/grande_divorcio.PNG" alt="Livro O Grande Divórcio">
-                <!-- <div class="text">O Grande Divórcio</div> -->
+                <div class="text">O Grande Divórcio</div>
             </div>
 
             <div class="div-slide">
@@ -194,7 +199,7 @@
                 <div class="text">Todo o meu Caminho Diante de Mim</div>
             </div>
 
-            <a class="proximo" onclick="proximoSlide()">&#10095;</a>
+            <a class="proximo" onclick="passarSlide(1)">&#10095;</a>
         </div>
         <br>
 

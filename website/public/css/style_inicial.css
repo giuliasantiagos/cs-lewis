@@ -120,9 +120,16 @@ body{
   height: var(--tamanho-banner);
 }
 
+.caroussel h1{
+    padding-top: 30px;
+    font-size: 35px;
+    text-align: center;
+}
+
 .caroussel .container{
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .div-slide{
@@ -130,11 +137,29 @@ body{
     animation-name: fade;
     animation-duration: 1.5s;
     width: 300px;
+    padding: 5px;
 }
 
 .div-slide img{
-    padding: 20px;
     width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div-slide .number{
+    width: 80%;    
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 5px;
+}
+
+.div-slide .text{
+    width: 80%;    
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    padding: 5px;
 }
 
 .anterior, .proximo {
