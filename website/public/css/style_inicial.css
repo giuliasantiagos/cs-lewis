@@ -174,3 +174,98 @@ body{
     justify-content: center;
     align-items: center;
   }
+
+  /* Divisão */
+
+  .divisao{
+    height: var(--tamanho-footer);
+    background-color: var(--caramelo);
+}
+
+.divisao .container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+  /* Formulário */
+
+  .formulario{
+    height: var(--tamanho-banner);
+  }
+
+  .formulario .container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .formulario .container .text{
+    text-align: center;
+  }
+
+  .formulario .container .text h1{
+    padding-top: 50px;
+    font-size: 35px;
+  }
+
+  .formulario .container .text h2{
+    font-size: 25px;
+    color: var(--cinza);
+  }
+
+  .formulario .container .content{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 1000px;
+    padding-top: 20px;
+  }
+
+  table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  padding: 5px;
+}
+
+td{
+  text-align: left;
+  padding: 1px;
+  font-size: 12px;
+}
+
+th{
+  text-align: justify;
+  padding: 1px;
+  font-size: 12px;
+}
+
+.formulario .container .div-options{
+    display: flex;
+    flex-direction: column;
+    padding-top: 15px;
+    gap: 10px;
+  }
+
+  .div-options label{
+    font-family: arial, sans-serif;
+    font-size: 12px;
+  }
+
+.formulario select{
+    background-color: var(--cor-fundo);
+    border-radius: 5px;
+  }
+
+ .formulario .button{
+    width: 100%;
+    height: 30px;
+    background-color: var(--marrom);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
