@@ -86,7 +86,7 @@ function cadastrar() {
   }
 
   // Enviando o valor da nova input
-  fetch("/usuario/cadastrar", {
+  fetch("/usuarios/cadastrar", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -110,7 +110,7 @@ function cadastrar() {
           "Cadastro realizado com sucesso! Redirecionando para tela de login...";
 
         setTimeout(() => {
-          window.location = "../html/login.html";
+          window.location = "../login.html";
         }, "2000");
 
         limparFormulario();
