@@ -23,7 +23,6 @@ body{
     letter-spacing: 1px;
 }
 
-
 /* Header */
 
 .header{
@@ -35,7 +34,6 @@ body{
 
 .header .logo{
     width: 30%;
-    max-width: 100%;
 }
 
 .header .container{
@@ -48,6 +46,7 @@ body{
 }
 
 .header a{
+    font-size: 15px;
     text-decoration: none;
     color: black;
     font-family: Arial, Helvetica, sans-serif;
@@ -123,57 +122,62 @@ body{
 }
 
 .pagina .container{
-    display: grid;
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
 }
 
 .pagina .content{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding: 5px;
     text-align: center;
     margin: 0;
+    width: 1000px;
 }
 
 .pagina .titulo{
     font-size: 35px;
     margin: 0;
     cursor: context-menu;
-    padding-top: 40px;
-    display: flex;
-    justify-content: center;
+    padding-top: 55px;
+    text-align: center;
 }
 
 .pagina .content .bloco{
-    text-align: justify;
-    padding-left: 100px;
+    width: 300px;
+    padding-top: 15px;
+    padding-left: 180px;
     display: flex;
     flex-direction: column;
-    padding-top: 40px;
 }
 
 .pagina .content .bloco img{
-    width: 60%;
+    width: 70%;
     border-radius: 5px;    
 }
 
 .pagina .content .bloco p{
     margin-top: 0;
     padding-top: 5px;
-    bottom: 10px;
-    font-size: 16px;
-    width: 60%;
+    font-size: 10px;
+    width: 70%;
+    text-align: justify;
 }
 
 .pagina .text{
-    padding-right: 70px;
+    width: 80%;
     text-align: justify;
     margin-top: 10px;
 }
 
-.text p{
-    font-size: 15px;
-    padding-left: 0;
+.pagina .text h3{
+    margin: 2px;
+}
+
+.pagina .text p{
+    font-size: 12px;
+    margin: 0;
 }
 
 /* Divisão */
@@ -194,7 +198,7 @@ body{
     flex-direction: column;
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
-    padding: 15px 0;
+    padding: 10px 0;
 }
 
 .box p{
@@ -210,6 +214,8 @@ body{
 .page .container{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .page .container .titulo{
@@ -217,7 +223,7 @@ body{
     margin: 0;
     cursor: context-menu;
     text-align: center;
-    padding-top: 40px;
+    padding-top: 55px;
 }
 
 .page .container .subtitulo{
@@ -231,38 +237,39 @@ body{
 
 .page .boxes{
     padding-top: 15px;
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 1000px;
 }
 
 .page .boxes .box{
+    padding-top: 15px;
+    width: 300px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
 .page .boxes .box a{
     text-align: center;
-    font-size: 12px;
-    width: 60%;
+    font-size: 11px;
+    width: 40%;
 }
 
 .page .boxes .box img{
     display: flex;
     flex-direction: column;
     align-items: center;    
-    width: 60%;
-    max-width: 100%;
-    border-radius: 20px; 
-    padding: 15px;
+    width: 40%;
+    border-radius: 5px; 
 }
 
-/* Divisão 2 */
+/* Divisão */
 
 .divisao{
     height: var(--tamanho-footer);
-    background-color: var(--laranja);
+    background-color: var(--caramelo);
 }
 
 .divisao .container .text{
@@ -276,10 +283,13 @@ body{
 }
 
 .divisao p{
-    width: 25%;
     font-size: 15px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 600;
+}
+
+.divisao a{
+    color: black;
 }
 
 /* Sobre */
@@ -293,10 +303,10 @@ body{
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    padding-top: 30px;
 }
 
 .social .container .titulo{
+    padding-top: 30px;
     font-size: 35px;
 }
 
@@ -304,66 +314,33 @@ body{
     font-size: 25px;
     color: var(--cinza);
     margin: 0;
+    padding-bottom: 10px;
 }
 
 .social .container .boxes{
-    align-items: center;
-    display: flex;
-    width: 100%;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 1000px;
+    padding-left: 100px;
 }
 
 .social .boxes .box{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: justify;
     width: 60%;
 }
 
 .social .box p{
-    width: 90%;
-    font-size: 16px;
+    width: 100%;
+    font-size: 12px;
 }
 
 .social .box img{
-    width: 80%;
+    width: 90%;
     border-radius: 60px;
-    padding: 10px;
-}
-
-.social .box h2{
-    margin: 0;
-    align-self: center;
-}
-
-/* Divisão 3 */
-
-
-.divisao3{
-    height: var(--tamanho-footer);
-    background-color: var(--caramelo);
-}
-
-.divisao3 .container .text{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 18px;
-    gap: 25px;
-}
-
-.divisao3 p{
-    width: 25%;
-    font-size: 15px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 600;
-}
-
-.divisao3 a{
-    font-style: none;
-    color: black;
 }
 
 /* Valores e missão */
@@ -377,10 +354,10 @@ body{
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    padding-top: 30px;
 }
 
 .missao .container .titulo{
+    padding-top: 30px;
     font-size: 35px;
 }
 
@@ -391,38 +368,34 @@ body{
 }
 
 .missao .container .boxes{
-    align-items: center;
-    display: flex;
-    width: 100%;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 1000px;
 }
 
 .missao .boxes .box{
     display: flex;
     flex-direction: column;
-    text-align: justify;
-    width: 45%;
+    width: 100%;
+    padding-left: 160px;
 }
 
 .missao .box p{
-    width: 70%;
-    font-size: 16px;
+    width: 50%;
+    font-size: 12px;
+    text-align: justify;
 }
 
-
 .missao .box h2{
-    align-self: center;
-    text-align: justify;
-    width: 45%;
+    text-align: center;
+    width: 50%;
     margin: 0;
-    padding: 0;
 }
 
 
 .missao img{
-    width: 30%;
+    width: 50%;
     border-radius: 60px;
-    padding: 10px;
 }
 
 
@@ -438,9 +411,8 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
     display: flex;
-    width: 80%;
+    width: 1000px;
     margin: auto;
 }
 
@@ -450,17 +422,19 @@ body{
 }
 
 .banner-final .container .texto{
-    padding-top: 30px;
+    padding-top: 15px;
+    text-align: center;
     margin: 5px;
     font-size: 25px;
+    color: var(--cinza);
     cursor: context-menu;
 }
 
-/**/
+/* Footer */
 
 .footer{
     height: var(--tamanho-footer+20px);
-    background-color: var(--caramelo);
+    background-color: var(--laranja);
     margin: 0;
     padding: 0;
 }
