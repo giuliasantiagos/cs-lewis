@@ -5,9 +5,10 @@ create table usuario(
 idusuario int primary key auto_increment,
 nome varchar(45) not null,
 email varchar(65) not null,
-senha varchar(30) not null,
-confirmarsenha varchar(30) not null
+senha varchar(30) not null
 );
+
+select * from usuario;
 
 create table livros(
 idlivros int primary key auto_increment,

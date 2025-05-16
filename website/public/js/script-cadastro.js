@@ -75,7 +75,7 @@ function cadastrar() {
   }
 
     // Verificando se a confirmação de senha é válida:
-  if ((confsenhaVar.length <= 1) || senhaVar != confsenhaVar) {
+  if (senhaVar != confsenhaVar) {
     cardErro.style.display = "block";
     mensagem_erro.innerHTML =
       "(Mensagem de erro para senha inválida.)";
@@ -96,8 +96,7 @@ function cadastrar() {
       // Agora vá para o arquivo routes/usuario.js
       nomeServer: nomeVar,
       emailServer: emailVar,
-      senhaServer: senhaVar,
-      confsenhaServer: confsenhaVar
+      senhaServer: senhaVar
     }),
   })
     .then(function (resposta) {
@@ -110,7 +109,7 @@ function cadastrar() {
           "Cadastro realizado com sucesso! Redirecionando para tela de login...";
 
         setTimeout(() => {
-          window.location = "../login.html";
+          window.location = "./login.html";
         }, "2000");
 
         limparFormulario();
