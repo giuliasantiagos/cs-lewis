@@ -1,4 +1,4 @@
-var usuarioModel = require("../models/formularioModel");
+var formularioModel = require("../models/formularioModel");
 
 function enviar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
@@ -38,7 +38,7 @@ var varSelectGenero = req.body.varSelectGeneroServer;
                 function (erro) {
                     console.log(erro);
                     console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        "\nHouve um erro ao realizar o formulário! Erro: ",
                         erro.sqlMessage
                     );
                     res.status(500).json(erro.sqlMessage);
