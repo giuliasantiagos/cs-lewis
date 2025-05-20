@@ -1,0 +1,289 @@
+/* pagina mural */
+:root{
+    --tamanho-header: 80px;
+    --tamanho-banner: calc(100vh - var(--tamanho-header) + 130px);
+
+    --cor-fundo: #FEF2DE;
+    --laranja: #F49459;
+    --caramelo: #C3905E;
+    --marrom: #4E3B28;
+    --cinza: #3E3E3E;
+    --cinza-claro: #D9D9D9;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Jacques Francois', serif;
+}
+
+/* pagina graficos */
+
+.dash-header {
+  background-color: #212124;
+}
+
+.dash {
+  width: 80%;
+  position: relative;
+  top: 0;
+  left: 20%;
+  background-color: var(--cor-fundo);
+  height: 100vh;
+  overflow: auto;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 450px;
+  width: 100%;
+  align-items: center;
+  color: white;
+}
+
+.card-aquario {
+  margin: 2%;
+  min-width: 40%;
+  max-width: 50%;
+  width: fit-content;
+  flex-wrap: wrap;
+  display: flex;
+  /* text-align: center; */
+  height: 180px;
+  /* justify-content: right; */
+  background-color: #212124;
+  font-size: 20px;
+}
+
+.card-aquario h1 {
+  width: fit-content;
+}
+
+.card-aquario p {
+  margin: 0;
+  font-size: 50px;
+  font-weight: lighter;
+  text-align: left;
+}
+
+.desc-aquario {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+.desc-aquario .cor-alerta {
+  width: 30px;
+}
+
+.title-aquario {
+  width: 100%;
+}
+
+
+.cards h1 {
+  font-size: 22px;
+  border-bottom: solid white 1px;
+  text-align: left;
+  font-weight: lighter;
+  margin: 20px;
+}
+
+.temperatura,
+.umidade {
+  margin: 5px;
+  margin-left: 20px;
+  width: 75%;
+}
+
+.cor-alerta {
+  width: 13%;
+  height: 30%;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.btns-dash {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  padding: 0 30% 0 30%;
+}
+
+.graph {
+  width: 70%;
+  margin: auto;
+  padding-top: 10px;
+}
+
+.tituloGraficos {
+  color: rgb(216, 216, 216);
+  display: flex;
+  justify-content: center;
+}
+
+.btn-chart {
+  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border: 0;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 10px 15px;
+  color: #e6005a;
+  background-color: white;
+  margin: 5px;
+  border-radius: 3px;
+  cursor: pointer
+}
+
+.btn-pink {
+  color: white;
+  background-color: #e6005a;
+}
+
+.btn-white {
+  color: #e6005a;
+  background-color: white;
+
+}
+
+.label-captura {
+  height: 80px;
+}
+
+.display-none {
+  display: none;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.display-block {
+  display: block;
+}
+
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* PAGINA DOS GRÁFICOS 2023 */
+
+.janela {
+  display: flex;
+  /* width: 100vw; */
+}
+
+.header-left a {
+  text-decoration: none;
+  color: white;
+}
+
+.header-left {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  height: 100vh;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border-right: none;
+  background-color: var(--laranja);
+}
+
+.dash-right {
+  display: flex;
+  width: 70%;
+  height: fit-content;
+  background-color: #161618;
+  position: relative;
+  top: 0;
+  left: 25%;
+  height: 100vh;
+  overflow: auto;
+}
+
+.header-left h1 {
+  color: var(--cinza);
+}
+
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+}
+
+.logo img{
+    width: 100%;
+    padding: 0;
+}
+
+.hello {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.hello h3 {
+  color: var(--cinza);
+  font-weight: 300;
+  font-size: 1.2rem;
+}
+
+.hello h3 span {
+  font-weight: 800;
+}
+
+.btn-nav {
+  width: 40%;
+  color: var(--cor-fundo);
+  background-color: var(--marrom);
+  border-radius: 10px;
+  text-align: center;
+  padding: 2% 5%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn-nav-white {
+  width: 40%;
+  background-color: var(--cor-fundo);
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+  padding: 2% 5%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn-nav-white h3 {
+  color: var(--marrom);
+  padding: 0;
+  margin: 0;
+}
+
+.btn-nav h3,
+.btn-logout h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.btn-logout {
+  margin: 0;
+  padding: 0;
+  width: 20%;
+  background-color: var(--cor-fundo);
+  color: var(--marrom);
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px 15px;
+  margin-bottom: 100px;
+  cursor: pointer;
+}

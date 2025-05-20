@@ -55,7 +55,7 @@ function enviar() {
           "Formulário realizado com sucesso! Redirecionando para tela de dashboards...";
 
         setTimeout(() => {
-          window.location = "./index.html";
+          window.location = "./dashboard.html";
         }, "2000");
 
         limparFormulario();
