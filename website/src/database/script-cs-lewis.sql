@@ -22,13 +22,10 @@ constraint chk_editora check (editora in ('Thomas Nelson Brasil', 'HarperCollins
 );
 
 create table usuario_livros(
-fkusuario int,
-fklivros int,
-status_leitura int,
-primary key(fkusuario, fklivros),
-constraint fk_usuario foreign key (fkusuario) references usuario(idusuario),
-constraint fk_livros foreign key (fklivros) references livros(idlivros),
-constraint chk_status_leitura check (status_leitura in (1, 2, 3))
+fkusuario int primary key auto_increment,
+genero_favorito varchar(45),
+qtdLidos int,
+constraint fk_usuario foreign key (fkusuario) references usuario(idusuario)
 );
 
 INSERT INTO livros
