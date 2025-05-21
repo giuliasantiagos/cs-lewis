@@ -8,6 +8,7 @@ function enviar() {
 
   var selectGeneroVar = select_genero.value;
   var qtdLidosVar = ipt_qtd_lidos.value;
+ 
 
   // Verificando se há algum campo em branco
   if (qtdLidosVar == "") {
@@ -43,7 +44,7 @@ function enviar() {
       // Agora vá para o arquivo routes/usuario.js
       selectGeneroServer: selectGeneroVar,
       qtdLidosServer: qtdLidosVar,
-      idUsuario: sessionStorage.ID_USUARIO
+      idUsuario: sessionStorage.ID_USUARIO,
     }),
   })
     .then(function (resposta) {

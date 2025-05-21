@@ -23,7 +23,7 @@ constraint chk_editora check (editora in ('Thomas Nelson Brasil', 'HarperCollins
 ); */
 
 create table usuario_livros(
-fkusuario int primary key auto_increment,
+fkusuario int,
 genero_favorito varchar(45),
 qtdLidos int,
 constraint fk_usuario foreign key (fkusuario) references usuario(idusuario)

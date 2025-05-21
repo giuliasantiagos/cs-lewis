@@ -8,6 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jacques+Francois&display=swap" rel="stylesheet">
+    <script src="./js/sessao.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./js/script-dashboard.js"></script>
 </head>
 <body>
 
@@ -27,7 +30,7 @@
                     <h3>Indicação de leitura</h3>
                 </a>
             </div>
-
+            
             <div class="btn-nav">
 
                 <h3>Gráficos</h3>
@@ -37,6 +40,7 @@
             <div class="btn-logout" onclick="limparSessao()">
                 <h3>Sair</h3>
             </div>
+            <button onclick="recuperarDados()">Listar</button>
 
         </div>
 
@@ -44,13 +48,23 @@
             <div id="alerta">
             </div>
 
-            <div class="btns-dash" id="btnAquario">
+            <div class="btns-dash">
+
+                <div class="grafico"></div>
+                <div class="grafico"></div>
                 <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
             </div>
             <div id="graficos">
             </div>
         </div>
     </div>
+
+
     
 </body>
+
+<script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+</script>
+
 </html>

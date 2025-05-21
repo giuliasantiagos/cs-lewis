@@ -1,33 +1,16 @@
 var formularioModel = require("../models/formularioModel");
 
 function recuperarDados(req, res) {
-    var selectGenero = req.body.selectGeneroServer;
-    var qtdLidos = req.body.qtdLidosServer;
-    var idUsuario = req.body.idUsuario;
+    var idUsuario = req.params.idUsuario;
 
-    if (selectGenero == undefined) {
-        res.status(400).send("Seu selectGenero está undefined!");
-    } else if(qtdLidos == undefined){
-        res.status(400).send("Seu qtdLidos está undefined!");
-    } else {
-
-        formularioModel.recuperarDados(selectGenero, qtdLidos, idUsuario)
+        formularioModel.recuperarDados(idUsuario)
             .then(
-                function (resultadoAutenticar) {
-                    console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
-                    console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
+                function (resultado) {
 
-                    if (resultadoAutenticar.length == 1) {
-                        console.log(resultadoAutenticar);
-
-                        res.json({
-                            selectGenero: resultadoAutenticar[0].selectGenero,
-                            qtdLidos: resultadoAutenticar[0].qtdLidos,
-                            idUsuario: resultadoAutenticar[0].idUsuario
-                        });
-
-                    } else if (resultadoAutenticar.length == 0) {
-                        res.status(403).send("Quantidade de livros lidos inválido(s)");
+                    if (resultado.length > 0) {
+                       res.status(200).jason(resultado);
+                    } else {
+                        res.status(403).send("Quantidade de livros lidos inválida(s)");
                     }
                 }
             ).catch(
@@ -39,13 +22,15 @@ function recuperarDados(req, res) {
             );
     }
 
-}
+
 
 
 function enviar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var selectGenero = req.body.selectGeneroServer;
     var qtdLidos = req.body.qtdLidosServer;
+    var idUsuario = req.body.idUsuario;
+
 
     if (selectGenero == undefined) {
         res.status(400).send("selectGenero está undefined!");
@@ -53,7 +38,7 @@ function enviar(req, res) {
         res.status(400).send("qtdLidos está undefined!");
     } else {
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        formularioModel.enviar(selectGenero, qtdLidos)
+        formularioModel.enviar(selectGenero, qtdLidos,idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);

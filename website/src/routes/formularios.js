@@ -3,8 +3,8 @@ var router = express.Router();
 
 var formularioController = require("../controllers/formularioController");
 
-router.post("/recuperarDados", function (req, res) {
-    usuarioController.recuperarDados(req, res);
+router.get("/recuperarDados/:idUsuario", function (req, res) {
+    formularioController.recuperarDados(req, res);
 })
 
 //Recebendo os dados do html e direcionando para a função cadastrar de usuarioController.js

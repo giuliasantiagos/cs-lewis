@@ -1,96 +1,41 @@
-b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+window.onload = exibirGraficosDoUsuario();
 
-window.onload = exibirFormulariosDoUsuario();
+function exibirGraficosDoUsuario() {
+    let graficos = document.querySelectorAll('.grafico');
 
-function exibirFormulariosDoUsuario() {
-    formularios.forEach(item => {
-        document.getElementById("btnFormulario").innerHTML += `
-            <button class="btn-chart" onclick="exibirFormulario(${item.id})" id="btnFormulario${item.id}">${item.descricao}</button>
-            `
+    for (var i = 0; i < graficos.length; i++) {
+        graficos.innerHTML = `<canvas id="myChartCanvas${i}"></canvas>`;
 
-        document.getElementById("graficos").innerHTML += `
-                <div id="grafico${item.id}" class="display-none">
-                    <h3 class="tituloGraficos">
-                        <span id="tituloAquario${item.id}">${item.descricao}</span>
-                    </h3>
-                    <div class="graph">
-                        <canvas id="myChartCanvas${item.id}"></canvas>
-                    </div>
-                    <div class="label-captura">
-                        <p id="avisoCaptura${item.id}" style="color: white"></p>
-                    </div>
-                </div>
-            `
+        recuperarDados(i.id);
 
-        obterDadosGrafico(item.id)
-    });
-
-    if (formularios.length > 0) {
-        exibirFormulario(formularios[0].id)
     }
 
+    if (graficos.length > 0) {
+        exibirGrafico(graficos[0].id)
+    }
 }
 
-function exibirFormulario(fkusuario) {
-        let todosOsGraficos = JSON.parse(sessionStorage.FORMULARIOS);
+function exibirGrafico(idUsuario) {
+    let todosOsGraficos = JSON.parse(sessionStorage.ID_USUARIO);
 
-        for (i = 0; i < todosOsGraficos.length; i++) {
-            // exibindo - ou não - o gráfico
-            if (todosOsGraficos[i].id != fkusuario) {
-                let elementoAtual = document.getElementById(`grafico${todosOsGraficos[i].id}`)
-                if (elementoAtual.classList.contains("display-block")) {
-                    elementoAtual.classList.remove("display-block")
-                }
-                elementoAtual.classList.add("display-none")
-
-            }
-        }
-
+    for (i = 0; i < todosOsGraficos.length; i++) {
         // exibindo - ou não - o gráfico
-        let graficoExibir = document.getElementById(`grafico${fkusuario}`)
-        graficoExibir.classList.remove("display-none")
-        graficoExibir.classList.add("display-block")
+        if (todosOsGraficos[i].id != idUsuario) {
+            let elementoAtual = document.getElementById(`grafico${todosOsGraficos[i].id}`)
+            if (elementoAtual.classList.contains("display-block")) {
+                elementoAtual.classList.remove("display-block")
+            }
+            elementoAtual.classList.add("display-none")
 
+        }
     }
 
+    //exibindo - ou não - o gráfico
+    let graficoExibir = document.getElementById(`grafico${idUsuario}`);
+    graficoExibir.classList.remove("display-none");
+    graficoExibir.classList.add("display-block");
 
-function recuperarDados() {
-
-    fetch("/formularios/recuperarDados", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            selectGeneroServer: selectGeneroVar,
-            qtdLidosServer: qtdLidosVar,
-            idUsuario: sessionStorage.ID_USUARIO
-        })
-    }).then(function (resposta) {
-        console.log("ESTOU NO THEN DO entrar()!")
-
-        if (resposta.ok) {
-            console.log(resposta);
-
-        } else {
-            console.log("Houve um erro ao tentar realizar a dashboard!");
-
-            resposta.text().then(texto => {
-                console.error(texto);
-                finalizarAguardar(texto);
-            });
-        }
-
-    }).catch(function (erro) {
-        console.log(erro);
-    })
-
-    return false;
 }
-
-// function sumirMensagem() {
-//     cardErro.style.display = "none"
-// }
 
 
 // Esta função *obterDadosGrafico* busca os últimos dados inseridos em tabela de medidas.
@@ -99,36 +44,32 @@ function recuperarDados() {
 
 //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
 //     Para ajustar o "select", ajuste o comando sql em src/models
-function obterDadosGrafico(idAquario) {
 
-    alterarTitulo(idAquario)
+function recuperarDados() {
+    console.log(sessionStorage.ID_USUARIO)
+    let idUsuario = sessionStorage.ID_USUARIO;
 
-    if (proximaAtualizacao != undefined) {
-        clearTimeout(proximaAtualizacao);
-    }
-
-    fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-        if (response.ok) {
-            response.json().then(function (resposta) {
-                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                resposta.reverse();
-
-                plotarGrafico(resposta, idAquario);
-
-            });
+    fetch(`/formularios/recuperarDados/${idUsuario}`) 
+    .then(function(resposta){
+        console.log(resposta);
+        
+        if (resposta.ok) {
+            plotarGrafico(resposta, idUsuario);
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
         }
     })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        .catch(function (erro) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${erro}`);
         });
+
+    return false;
 }
 
 // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
 // Configura o gráfico (cores, tipo, etc), materializa-o na página e,
 // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-function plotarGrafico(resposta, livros) {
+function plotarGrafico(idUsuario) {
 
     console.log('iniciando plotagem do gráfico...');
 
@@ -139,51 +80,51 @@ function plotarGrafico(resposta, livros) {
     let dados = {
         labels: labels,
         datasets: [{
-            label: 'Livros lidos',
-            data: livros,
+            label: 'Umidade',
+            data: [],
             fill: false,
             borderColor: 'rgb(75, 192, 192)',
             tension: 0.1
         },
         {
-            label: 'Total de livros',
-            data: 34,
+            label: 'Temperatura',
+            data: [],
             fill: false,
             borderColor: 'rgb(199, 52, 52)',
             tension: 0.1
         }]
     };
 
+    console.log('----------------------------------------------')
+    console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+    console.log(resposta)
 
-console.log('----------------------------------------------')
-console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-console.log(resposta)
-
-// Inserindo valores recebidos em estrutura para plotar o gráfico
-for(var i = 0; i < resposta.length; i++){
-    labels.push(dados[i].label);
-  }
-
-console.log('----------------------------------------------')
-console.log('O gráfico será plotado com os respectivos valores:')
-console.log('Labels:')
-console.log(labels)
-console.log('Dados:')
-console.log(dados.datasets)
-console.log('----------------------------------------------')
-
-// Criando estrutura para plotar gráfico - config
-const config = {
-    type: 'bar',
-    data: dados,
-};
-
-// Adicionando gráfico criado em div na tela
-let myChart = new Chart(
-    document.getElementById(`myChartCanvas${livros}`),
-    config
-);
-
-setTimeout(() => atualizarGrafico(livros, dados, myChart), 2000);
+    // Inserindo valores recebidos em estrutura para plotar o gráfico
+    for (i = 0; i < resposta.length; i++) {
+        var registro = resposta[i];
+        labels.push(registro.momento_grafico);
+        dados.datasets[0].data.push(registro.qtdLidos);
     }
 
+    console.log('----------------------------------------------')
+    console.log('O gráfico será plotado com os respectivos valores:')
+    console.log('Labels:')
+    console.log(labels)
+    console.log('Dados:')
+    console.log(dados.datasets)
+    console.log('----------------------------------------------')
+
+    // Criando estrutura para plotar gráfico - config
+    const config = {
+        type: 'line',
+        data: dados,
+    };
+
+    // Adicionando gráfico criado em div na tela
+    let myChart = new Chart(
+        document.getElementById(`myChartCanvas${idUsuario}`),
+        config
+    );
+
+    setTimeout(() => atualizarGrafico(idUsuario, dados, myChart), 2000);
+}

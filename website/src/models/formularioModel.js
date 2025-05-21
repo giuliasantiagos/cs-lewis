@@ -1,9 +1,9 @@
 var database = require("../database/config");
 
-function recuperarDados(selectGenero, qtdLidos, idUsuario) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function recuperarDados(): ", selectGenero, qtdLidos, idUsuario)
+function recuperarDados(idUsuario) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function recuperarDados(): ", idUsuario);
     var instrucaoSql = `
-        SELECT fkusuario, genero_favorito, qtdLidos FROM usuario_livros WHERE fkusuario = '${idUsuario}', genero_favorito = '${selectGenero}', qtdLidos = '${qtdLidos}';
+        SELECT fkusuario, qtdLidos FROM usuario_livros WHERE fkusuario = '${idUsuario}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
