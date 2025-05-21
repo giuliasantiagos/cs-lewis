@@ -1,5 +1,59 @@
 b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
+window.onload = exibirFormulariosDoUsuario();
+
+function exibirFormulariosDoUsuario() {
+    formularios.forEach(item => {
+        document.getElementById("btnFormulario").innerHTML += `
+            <button class="btn-chart" onclick="exibirFormulario(${item.fkusuario})" id="btnFormulario${item.fkusuario}">${item.descricao}</button>
+            `
+
+        document.getElementById("graficos").innerHTML += `
+                <div id="grafico${item.fkusuario}" class="display-none">
+                    <h3 class="tituloGraficos">
+                        <span id="tituloAquario${item.fkusuario}">${item.descricao}</span>
+                    </h3>
+                    <div class="graph">
+                        <canvas id="myChartCanvas${item.fkusuario}"></canvas>
+                    </div>
+                    <div class="label-captura">
+                        <p id="avisoCaptura${item.fkusuario}" style="color: white"></p>
+                    </div>
+                </div>
+            `
+
+        obterDadosGrafico(item.fkusuario)
+    });
+
+    if (formularios.length > 0) {
+        exibirFormulario(formularios[0].fkusuario)
+    }
+
+}
+
+function exibirFormulario(fkusuario) {
+        let todosOsGraficos = JSON.parse(sessionStorage.FORMULARIOS);
+
+        for (i = 0; i < todosOsGraficos.length; i++) {
+            // exibindo - ou não - o gráfico
+            if (todosOsGraficos[i].id != fkusuario) {
+                let elementoAtual = document.getElementById(`grafico${todosOsGraficos[i].fkusuario}`)
+                if (elementoAtual.classList.contains("display-block")) {
+                    elementoAtual.classList.remove("display-block")
+                }
+                elementoAtual.classList.add("display-none")
+
+            }
+        }
+
+        // exibindo - ou não - o gráfico
+        let graficoExibir = document.getElementById(`grafico${fkusuario}`)
+        graficoExibir.classList.remove("display-none")
+        graficoExibir.classList.add("display-block")
+
+    }
+
+/*
 function recuperarDados() {
 
     fetch("/formularios/recuperarDados", {
@@ -17,16 +71,7 @@ function recuperarDados() {
         if (resposta.ok) {
             console.log(resposta);
 
-            resposta.json().then(json => {
-                console.log(json);
-                console.log(JSON.stringify(json));
-                sessionStorage.SELECT_GENERO = json.selectGenero;
-                sessionStorage.QTD_LIDOS = json.qtdLidos;
-
-            });
-
         } else {
-
             console.log("Houve um erro ao tentar realizar a dashboard!");
 
             resposta.text().then(texto => {
@@ -44,7 +89,7 @@ function recuperarDados() {
 
 function sumirMensagem() {
     cardErro.style.display = "none"
-}
+}*/
 
 
 // Esta função *obterDadosGrafico* busca os últimos dados inseridos em tabela de medidas.
@@ -76,7 +121,7 @@ function sumirMensagem() {
 // }
 
 // // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
-// // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
+// // Configura o gráfico (cores, tipo, etc), materializa-o na página e,
 // // A função *plotarGrafico* também invoca a função *atualizarGrafico*
 // function plotarGrafico(resposta, livros) {
 
