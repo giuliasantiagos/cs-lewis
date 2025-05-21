@@ -42,7 +42,8 @@ function enviar() {
       // crie um atributo que recebe o valor recuperado aqui
       // Agora vá para o arquivo routes/usuario.js
       selectGeneroServer: selectGeneroVar,
-      qtdLidosServer: qtdLidosVar
+      qtdLidosServer: qtdLidosVar,
+      idUsuario: sessionStorage.ID_USUARIO
     }),
   })
     .then(function (resposta) {

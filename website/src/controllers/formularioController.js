@@ -1,8 +1,9 @@
 var formularioModel = require("../models/formularioModel");
 
-/*function recuperarDados(req, res) {
+function recuperarDados(req, res) {
     var selectGenero = req.body.selectGeneroServer;
     var qtdLidos = req.body.qtdLidosServer;
+    var idUsuario = req.body.idUsuario;
 
     if (selectGenero == undefined) {
         res.status(400).send("Seu selectGenero está undefined!");
@@ -10,7 +11,7 @@ var formularioModel = require("../models/formularioModel");
         res.status(400).send("Seu qtdLidos está undefined!");
     } else {
 
-        formularioModel.recuperarDados(selectGenero, qtdLidos)
+        formularioModel.recuperarDados(selectGenero, qtdLidos, idUsuario)
             .then(
                 function (resultadoAutenticar) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
@@ -21,7 +22,8 @@ var formularioModel = require("../models/formularioModel");
 
                         res.json({
                             selectGenero: resultadoAutenticar[0].selectGenero,
-                            qtdLidos: resultadoAutenticar[0].qtdLidos
+                            qtdLidos: resultadoAutenticar[0].qtdLidos,
+                            idUsuario: resultadoAutenticar[0].idUsuario
                         });
 
                     } else if (resultadoAutenticar.length == 0) {
@@ -38,7 +40,7 @@ var formularioModel = require("../models/formularioModel");
     }
 
 }
-*/
+
 
 function enviar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
@@ -71,6 +73,6 @@ function enviar(req, res) {
 
 
 module.exports = {
-    enviar
-    //recuperarDados
+    enviar,
+    recuperarDados
 }
