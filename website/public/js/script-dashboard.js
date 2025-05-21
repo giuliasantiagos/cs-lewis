@@ -4,7 +4,10 @@ function exibirGraficosDoUsuario() {
     let graficos = document.querySelectorAll('.grafico');
 
     for (var i = 0; i < graficos.length; i++) {
-        graficos.innerHTML = `<canvas id="myChartCanvas${i}"></canvas>`;
+        div_grafico.innerHTML = `<canvas id="myChartCanvas${i}"></canvas>
+                    <div class="label-captura">
+                        <p id="avisoCaptura${item.id}" style="color: white"></p>
+                    </div>`;
 
         recuperarDados(i.id);
 
@@ -49,16 +52,16 @@ function recuperarDados() {
     console.log(sessionStorage.ID_USUARIO)
     let idUsuario = sessionStorage.ID_USUARIO;
 
-    fetch(`/formularios/recuperarDados/${idUsuario}`) 
-    .then(function(resposta){
-        console.log(resposta);
-        
-        if (resposta.ok) {
-            plotarGrafico(resposta, idUsuario);
-        } else {
-            console.error('Nenhum dado encontrado ou erro na API');
-        }
-    })
+    fetch(`/formularios/recuperarDados/${idUsuario}`)
+        .then(function (resposta) {
+            console.log(resposta);
+
+            if (resposta.ok) {
+                plotarGrafico(resposta, idUsuario);
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
         .catch(function (erro) {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${erro}`);
         });
@@ -127,4 +130,58 @@ function plotarGrafico(idUsuario) {
     );
 
     setTimeout(() => atualizarGrafico(idUsuario, dados, myChart), 2000);
+}
+
+function atualizarGrafico(idUsuario, dados, myChart) {
+
+    fetch(`/formularios/recuperarDados/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (novoRegistro) {
+
+                obterdados(idUsuario);
+                // alertar(novoRegistro, idAquario);
+                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                console.log(`Dados atuais do gráfico:`);
+                console.log(dados);
+
+                let avisoCaptura = document.getElementById(`avisoCaptura${idUsuario}`)
+                avisoCaptura.innerHTML = ""
+
+
+                if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
+                    console.log("---------------------------------------------------------------")
+                    console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+                    avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+                    console.log("Horário do novo dado capturado:")
+                    console.log(novoRegistro[0].momento_grafico)
+                    console.log("Horário do último dado capturado:")
+                    console.log(dados.labels[dados.labels.length - 1])
+                    console.log("---------------------------------------------------------------")
+                } else {
+                    // tirando e colocando valores no gráfico
+                    dados.labels.shift(); // apagar o primeiro
+                    dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
+
+                    dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+                    dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
+
+                    dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
+                    dados.datasets[1].data.push(novoRegistro[0].qtdLidos); // incluir uma nova medida de temperatura
+
+                    myChart.update();
+                }
+
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(idUsuario, dados, myChart), 2000);
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+            proximaAtualizacao = setTimeout(() => atualizarGrafico(idUsuario, dados, myChart), 2000);
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+
 }
