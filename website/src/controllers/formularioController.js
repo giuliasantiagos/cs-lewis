@@ -2,13 +2,14 @@ var formularioModel = require("../models/formularioModel");
 
 function recuperarDados(req, res) {
     var idUsuario = req.params.idUsuario;
+    console.log(idUsuario)
 
         formularioModel.recuperarDados(idUsuario)
             .then(
                 function (resultado) {
-
                     if (resultado.length > 0) {
-                       res.status(200).jason(resultado);
+                        // Aqui checar o porquê dele estar voltando como requisição e não os dados
+                       res.status(200).json(resultado);
                     } else {
                         res.status(403).send("Quantidade de livros lidos inválida(s)");
                     }

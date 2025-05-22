@@ -1,3 +1,4 @@
+b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 window.onload = exibirGraficosDoUsuario();
 
 function exibirGraficosDoUsuario() {
@@ -6,7 +7,7 @@ function exibirGraficosDoUsuario() {
     for (var i = 0; i < graficos.length; i++) {
         div_grafico.innerHTML = `<canvas id="myChartCanvas${i}"></canvas>
                     <div class="label-captura">
-                        <p id="avisoCaptura${item.id}" style="color: white"></p>
+                        <p id="avisoCaptura${i.id}" style="color: white"></p>
                     </div>`;
 
         recuperarDados(i.id);
@@ -34,7 +35,7 @@ function exibirGrafico(idUsuario) {
     }
 
     //exibindo - ou não - o gráfico
-    let graficoExibir = document.getElementById(`grafico${idUsuario}`);
+    let graficoExibir = document.getElementById(`div_grafico`); // Colocar o fk, estava anteriormente
     graficoExibir.classList.remove("display-none");
     graficoExibir.classList.add("display-block");
 
@@ -49,12 +50,12 @@ function exibirGrafico(idUsuario) {
 //     Para ajustar o "select", ajuste o comando sql em src/models
 
 function recuperarDados() {
-    console.log(sessionStorage.ID_USUARIO)
+    console.log(sessionStorage.ID_USUARIO);
     let idUsuario = sessionStorage.ID_USUARIO;
 
     fetch(`/formularios/recuperarDados/${idUsuario}`)
         .then(function (resposta) {
-            console.log(resposta);
+            console.log(resposta.body);
 
             if (resposta.ok) {
                 plotarGrafico(resposta, idUsuario);
@@ -72,7 +73,7 @@ function recuperarDados() {
 // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
 // Configura o gráfico (cores, tipo, etc), materializa-o na página e,
 // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-function plotarGrafico(idUsuario) {
+function plotarGrafico(resposta) {
 
     console.log('iniciando plotagem do gráfico...');
 
@@ -80,27 +81,22 @@ function plotarGrafico(idUsuario) {
     let labels = [];
 
     // Criando estrutura para plotar gráfico - dados
-    let dados = {
+    const dados = {
         labels: labels,
         datasets: [{
-            label: 'Umidade',
-            data: [],
-            fill: false,
-            borderColor: 'rgb(75, 192, 192)',
-            tension: 0.1
+            label: 'Livros lidos',
+            backgroundColor: [
+                'rgb(54, 162, 235)',
+                'rgb(255, 205, 86)'
+            ],
+            data: []
         },
-        {
-            label: 'Temperatura',
-            data: [],
-            fill: false,
-            borderColor: 'rgb(199, 52, 52)',
-            tension: 0.1
-        }]
+        ]
     };
 
     console.log('----------------------------------------------')
     console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-    console.log(resposta)
+    console.log(resposta.body)
 
     // Inserindo valores recebidos em estrutura para plotar o gráfico
     for (i = 0; i < resposta.length; i++) {
@@ -118,14 +114,30 @@ function plotarGrafico(idUsuario) {
     console.log('----------------------------------------------')
 
     // Criando estrutura para plotar gráfico - config
-    const config = {
-        type: 'line',
+
+    let config = {
+        type: 'doughnut',
         data: dados,
-    };
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'índice de livros lidos de C.S Lewis',
+                    font: {
+                        size: 28
+                    },
+                    padding: {
+                        top: 16,
+                        bottom: 16
+                    }
+                }
+            }
+        }
+    }
 
     // Adicionando gráfico criado em div na tela
     let myChart = new Chart(
-        document.getElementById(`myChartCanvas${idUsuario}`),
+        document.getElementById(`myChartCanvas${idUsuario}`),   
         config
     );
 
@@ -184,4 +196,23 @@ function atualizarGrafico(idUsuario, dados, myChart) {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
 
+}
+
+
+function exibirKPI() {
+    JSON.parse(sessionStorage.ID_USUARIO).forEach(item => {
+        document.getElementById("cardLeituras").innerHTML += `
+                <div class="card-leitura">
+                    <div class="title-leitura">
+                        <h1>${item.descricao}</h1>
+                    </div>
+                    <div class="desc-leitura">
+                    <div class="lidos">
+                        <p id="livros_lidos_${item.id}">-°C</p>
+                    </div>
+                    <div class="cor-alerta" id="card_${item.id}"></div>
+                </div>
+                </div>
+                `
+    });
 }

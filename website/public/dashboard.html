@@ -10,9 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Jacques+Francois&display=swap" rel="stylesheet">
     <script src="./js/sessao.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="./js/script-dashboard.js"></script>
 </head>
-<body>
+<body onload="validarSessao(), exibirKPI(),  atualizacaoPeriodica()"></body>
 
     <div class="janela">
         <div class="header-left">
@@ -40,7 +39,6 @@
             <div class="btn-logout" onclick="limparSessao()">
                 <h3>Sair</h3>
             </div>
-            <button onclick="recuperarDados()">Listar</button>
 
         </div>
 
@@ -58,13 +56,35 @@
             </div>
         </div>
     </div>
+    
+
+    <div class="dash">
+        <div id="alerta">
+        </div>
+        <div class="area-parametros-alerta">
+            <p class="titulo-legenda">
+                Legenda - Parâmetros para Alertas
+            </p>
+            <div class="parametros-alerta">
+                <div class="item-regua perigo-frio">
+                    <p>Lidos</p>
+                    <p>&lt;</p>
+                </div>
+                <div class="item-regua alerta-frio">
+                    <p>Faltam ler</p>
+                    <p>&lt;</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cards" id="cardLeituras"></div>
+
+    </div>
+
+</div>
 
 
     
 </body>
-
-<script>
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-</script>
-
+    <script src="./js/script-dashboard.js"></script>
 </html>
