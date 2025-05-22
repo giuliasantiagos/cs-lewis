@@ -1,25 +1,30 @@
 b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
 window.onload = exibirGraficosDoUsuario();
 
 function exibirGraficosDoUsuario() {
     let graficos = document.querySelectorAll('.grafico');
+    let idUsuario =  sessionStorage.ID_USUARIO;
 
-    for (var i = 1; i < graficos.length; i++) {
+    for (var i = 0; i < graficos.length; i++) {
         div_grafico.innerHTML = `<canvas id="myChartCanvas${i}"></canvas>
                     <div class="label-captura">
                         <p id="avisoCaptura${i.id}" style="color: white"></p>
                     </div>`;
+                    console.log('este é o id do grafico', i, graficos)
 
         recuperarDados(i.id);
 
     }
 
     if (graficos.length > 0) {
-        exibirGrafico(graficos[0].id)
+        exibirGrafico(idUsuario)
+        console.log(graficos[0].id, 'parametros idusuario')
     }
 }
 
 function exibirGrafico(idUsuario) {
+    console.log("exibirGrafico chegou o id", idUsuario);
     let todosOsGraficos = JSON.parse(sessionStorage.ID_USUARIO);
 
     for (i = 0; i < todosOsGraficos.length; i++) {
@@ -50,9 +55,9 @@ function exibirGrafico(idUsuario) {
 //     Para ajustar o "select", ajuste o comando sql em src/models
 
 function recuperarDados() {
+    console.log("recuperarDados");
     console.log(sessionStorage.ID_USUARIO);
     let idUsuario = sessionStorage.ID_USUARIO;
-    console.log(sessionStorage.ID_USUARIO);
 
     fetch(`/formularios/recuperarDados/${idUsuario}`)
         .then(function (resposta) {
@@ -74,9 +79,8 @@ function recuperarDados() {
 // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
 // Configura o gráfico (cores, tipo, etc), materializa-o na página e,
 // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-function plotarGrafico(resposta) {
-    let idUsuario = sessionStorage.ID_USUARIO;
-
+function plotarGrafico(resposta, idUsuario) {
+    console.log("plotarGrafico");
     console.log('iniciando plotagem do gráfico...');
 
     // Criando estrutura para plotar gráfico - labels
@@ -103,9 +107,11 @@ function plotarGrafico(resposta) {
     // Inserindo valores recebidos em estrutura para plotar o gráfico
     for (i = 0; i < resposta.length; i++) {
         var registro = resposta[i];
-        labels.push(registro.momento_grafico);
-        dados.datasets[0].data.push(registro.qtdLidos);
+        labels.push(resposta[0].qtdLidos);
+        dados.datasets[0].data.push(registro[0].qtdLidos);
     }
+
+    console.log("resposta:", resposta[0])
 
     console.log('----------------------------------------------')
     console.log('O gráfico será plotado com os respectivos valores:')
@@ -143,17 +149,16 @@ function plotarGrafico(resposta) {
         config
     );
 
-    // setTimeout(() => atualizarGrafico(idUsuario, dados, myChart), 2000);
+    setTimeout(() => atualizarGrafico(idUsuario, dados, myChart), 2000);
 }
 
 function atualizarGrafico(idUsuario, dados, myChart) {
-
-    console.log('AQUIIIIIIIIIIIIIII',idUsuario)
+    console.log("atualizarGrafico");
     fetch(`/formularios/recuperarDados/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (novoRegistro) {
 
-                obterdados(idUsuario);
+                recuperarDados(idUsuario);
                 // alertar(novoRegistro, idAquario);
                 console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                 console.log(`Dados atuais do gráfico:`);
@@ -177,8 +182,8 @@ function atualizarGrafico(idUsuario, dados, myChart) {
                     dados.labels.shift(); // apagar o primeiro
                     dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
 
-                    dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-                    dados.datasets[0].data.push(novoRegistro[0].qtdLidos); // incluir uma nova medida de umidade
+                    dados.datasets[0].data.shift();  // apagar o primeiro de temperatura
+                    dados.datasets[0].data.push(novoRegistro[0].qtdLidos); // incluir uma nova medida de temperatura
 
                     myChart.update();
                 }
