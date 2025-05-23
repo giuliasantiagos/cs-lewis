@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,78 +12,79 @@
     <script src="./js/sessao.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body onload="validarSessao(), exibirKPI(),  atualizacaoPeriodica()"></body>
 
-    <div class="janela">
-        <div class="header-left">
-            <div class="logo">
-            <img src="./img/logo_retro.png">
-            </div>
-            <h1>C.S Livros</h1>
+<div class="janela">
+    <div class="header-left">
+        <div class="logo">
+            <a href="./formulario.html">
+                <img src="./img/logo_retro.png">
+            </a>
+        </div>
+        <h1>C.S Livros</h1>
 
-            <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-            </div>
+        <div class="hello">
+            <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+        </div>
 
-            <div class="btn-nav-white">
-                <a href="./indicacao.html">
-                    <h3>Indicação de leitura</h3>
-                </a>
-            </div>
-            
-            <div class="btn-nav">
+        <div class="btn-nav-white">
+            <a href="./indicacao.html">
+                <h3>Indicação de leitura</h3>
+            </a>
+        </div>
 
-                <h3>Gráficos</h3>
+        <div class="btn-nav">
 
-            </div>
-
-            <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
-            </div>
+            <h3>Gráficos</h3>
 
         </div>
 
-        <div class="dash">
-            <div id="alerta">
-            </div>
-
-            <div class="btns-dash">
-
-                <div class="grafico" id="div_grafico"></div>
-                <div class="grafico"></div>
-                <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
-            </div>
-            <div id="graficos">
-            </div>
+        <div class="btn-logout" onclick="limparSessao()">
+            <h3>Sair</h3>
         </div>
+
     </div>
-    
 
     <div class="dash">
         <div id="alerta">
         </div>
-        <div class="area-parametros-alerta">
-            <p class="titulo-legenda">
-                Legenda - Parâmetros para Alertas
-            </p>
-            <div class="parametros-alerta">
-                <div class="item-regua perigo-frio">
-                    <p>Lidos</p>
-                    <p>&lt;</p>
-                </div>
-                <div class="item-regua alerta-frio">
-                    <p>Faltam ler</p>
-                    <p>&lt;</p>
+
+        <div class="btns-dash">
+
+            <div class="grafico" id="div_grafico"></div>
+            <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
+        </div>
+        <div class="dash">
+            <div id="alerta">
+            </div>
+
+
+            <div class="area-parametros-alerta">
+                <p class="titulo-legenda">
+                    Legenda - Parâmetros para Alertas
+                </p>
+                <div class="parametros-alerta">
+                    <div class="item-regua perigo-frio">
+                        <p>Lidos</p>
+                        <div class="kpi"></div>
+                    </div>
+                    <div class="item-regua alerta-frio">
+                        <p>Faltam ler</p>
+                        <div class="kpi"></div>
+                    </div>
                 </div>
             </div>
+        
+            <div class="cards" id="cardLeituras"></div>
+        
         </div>
-
-        <div class="cards" id="cardLeituras"></div>
-
+        
+        </div>
     </div>
-
 </div>
-    
+
 </body>
-    <script src="./js/script-dashboard.js"></script>
+<script src="./js/script-dashboard.js"></script>
+
 </html>
