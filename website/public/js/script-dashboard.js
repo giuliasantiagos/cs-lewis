@@ -4,18 +4,15 @@ window.onload = exibirGraficosDoUsuario();
 
 function exibirGraficosDoUsuario() {
     let graficos = document.querySelectorAll('.grafico');
-    let idUsuario =  sessionStorage.ID_USUARIO;
+    let idUsuario = sessionStorage.ID_USUARIO;
 
-    //for (var i = 0; i < graficos.length; i++) {
-        div_grafico.innerHTML = `<canvas id="myChartCanvas"></canvas>
+    div_grafico.innerHTML = `<canvas id="myChartCanvas"></canvas>
                     <div class="label-captura">
                         <p id="avisoCaptura" style="color: white"></p>
                     </div>`;
-                    console.log('este é o id do grafico', graficos)
+    console.log('este é o id do grafico', graficos);
 
-        recuperarDados(graficos.id);
-
-   // }
+    recuperarDados(graficos.id);
 
     if (graficos.length > 0) {
         exibirGrafico(idUsuario)
@@ -59,16 +56,19 @@ function recuperarDados() {
     console.log(sessionStorage.ID_USUARIO);
     let idUsuario = sessionStorage.ID_USUARIO;
 
-    fetch(`/formularios/recuperarDados/${idUsuario}`)
-        .then(function (resposta) {
-            console.log(resposta.body);
+    fetch(`/formularios/recuperarDados/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                resposta.reverse();
 
-            if (resposta.ok) {
                 plotarGrafico(resposta, idUsuario);
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
+
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
         .catch(function (erro) {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${erro}`);
         });
@@ -84,19 +84,20 @@ function plotarGrafico(resposta, idUsuario) {
     console.log('iniciando plotagem do gráfico...');
 
     // Criando estrutura para plotar gráfico - labels
-    let labels = [];
+    let labels = ['Livros lidos', 'Livros restantes'];
 
     // Criando estrutura para plotar gráfico - dados
     const dados = {
         labels: labels,
         datasets: [{
-            label: 'Livros lidos',
+            label: 'Quantidade de livros',
             backgroundColor: [
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)'
+                '#F49459',
+                '#4E3B28'
             ],
             data: []
         },
+
         ]
     };
 
@@ -105,13 +106,14 @@ function plotarGrafico(resposta, idUsuario) {
     console.log(resposta.body)
 
     // Inserindo valores recebidos em estrutura para plotar o gráfico
-    for (i = 0; i < resposta.length; i++) {
-        var registro = resposta[i];
-        //labels.push(resposta[0].qtdLidos);
-        dados.datasets[0].data.push(registro.qtdLidos);
-    }
+    //for (i = 0; i < resposta.length; i++) {
+    var registro = resposta[i];
+    //labels.push(34-(registro.qtdLidos));
+    dados.datasets[0].data.push(registro.qtdLidos);
+    dados.datasets[0].data.push(34 - (registro.qtdLidos));
+    //}
 
-    console.log("resposta:", resposta[0])
+    console.log("resposta:", resposta)
     console.log('----------------------------------------------')
     console.log('O gráfico será plotado com os respectivos valores:')
     console.log('Labels:')
@@ -131,11 +133,11 @@ function plotarGrafico(resposta, idUsuario) {
                     display: true,
                     text: 'Índice de livros lidos de C.S Lewis',
                     font: {
-                        size: 28
+                        size: 20
                     },
                     padding: {
-                        top: 16,
-                        bottom: 16
+                        top: 5,
+                        bottom: 5
                     }
                 }
             }
@@ -144,16 +146,16 @@ function plotarGrafico(resposta, idUsuario) {
 
     // Adicionando gráfico criado em div na tela
     let myChart = new Chart(
-        document.getElementById(`myChartCanvas`),   
+        document.getElementById(`myChartCanvas`),
         config
     );
 
     //setTimeout(() => atualizarGrafico(idUsuario, dados, myChart), 2000);
 }
 
-/*function atualizarGrafico(idUsuario, dados, myChart) {
+function atualizarGrafico(idUsuario, dados, myChart) {
     console.log("atualizarGrafico");
-    fetch(`/formularios/recuperarDados/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
+    fetch(`/formularios/atualizarGrafico/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (novoRegistro) {
 
@@ -179,7 +181,7 @@ function plotarGrafico(resposta, idUsuario) {
                 } else {
                     // tirando e colocando valores no gráfico
                     dados.labels.shift(); // apagar o primeiro
-                    dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
+                    //dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
 
                     dados.datasets[0].data.shift();  // apagar o primeiro de temperatura
                     dados.datasets[0].data.push(novoRegistro[0].qtdLidos); // incluir uma nova medida de temperatura
@@ -188,7 +190,7 @@ function plotarGrafico(resposta, idUsuario) {
                 }
 
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(idUsuario, dados, myChart), 2000);
+                //proximaAtualizacao = setTimeout(() => atualizarGrafico(idUsuario, dados, myChart), 2000);
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
@@ -200,23 +202,18 @@ function plotarGrafico(resposta, idUsuario) {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
 
-}*/
+}
 
 
 function exibirKPI() {
-    JSON.parse(sessionStorage.ID_USUARIO).forEach(item => {
-        document.getElementById("cardLeituras").innerHTML += `
-                <div class="card-leitura">
-                    <div class="title-leitura">
-                        <h1>${item.descricao}</h1>
-                    </div>
-                    <div class="desc-leitura">
-                    <div class="lidos">
-                        <p id="livros_lidos_${item.id}">-°C</p>
-                    </div>
-                    <div class="cor-alerta" id="card_${item.id}"></div>
-                </div>
-                </div>
-                `
-    });
+    let kpis = document.querySelectorAll('.kpi');
+    let idUsuario = sessionStorage.ID_USUARIO;
+
+    div_grafico.innerHTML = `
+                    <div class="parametro-captura">
+                        <p id="paramCaptura" style="color: black"></p>
+                    </div>`;
+    console.log('este é o id da kpi', kpi)
+
+    recuperarDados(idUsuario, kpis);
 }
