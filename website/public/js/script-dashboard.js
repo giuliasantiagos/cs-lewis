@@ -1,4 +1,5 @@
 b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+b_lidos.innerHTML = sessionStorage.QTD_LIDOS;
 
 window.onload = exibirGraficosDoUsuario();
 
@@ -37,19 +38,12 @@ function exibirGrafico(idUsuario) {
     }
 
     //exibindo - ou não - o gráfico
-    let graficoExibir = document.getElementById(`div_grafico`); // Colocar o fk, estava anteriormente
+    let graficoExibir = document.getElementById(`div_grafico`);
     graficoExibir.classList.remove("display-none");
     graficoExibir.classList.add("display-block");
 
 }
 
-
-// Esta função *obterDadosGrafico* busca os últimos dados inseridos em tabela de medidas.
-// para, quando carregar o gráfico da primeira vez, já trazer com vários dados.
-// A função *obterDadosGrafico* também invoca a função *plotarGrafico*
-
-//     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-//     Para ajustar o "select", ajuste o comando sql em src/models
 
 function recuperarDados() {
     console.log("recuperarDados");
@@ -76,9 +70,7 @@ function recuperarDados() {
     return false;
 }
 
-// Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
-// Configura o gráfico (cores, tipo, etc), materializa-o na página e,
-// A função *plotarGrafico* também invoca a função *atualizarGrafico*
+
 function plotarGrafico(resposta, idUsuario) {
     console.log("plotarGrafico");
     console.log('iniciando plotagem do gráfico...');
@@ -106,12 +98,9 @@ function plotarGrafico(resposta, idUsuario) {
     console.log(resposta.body)
 
     // Inserindo valores recebidos em estrutura para plotar o gráfico
-    //for (i = 0; i < resposta.length; i++) {
-    var registro = resposta[i];
-    //labels.push(34-(registro.qtdLidos));
+    var registro = resposta[0];
     dados.datasets[0].data.push(registro.qtdLidos);
     dados.datasets[0].data.push(34 - (registro.qtdLidos));
-    //}
 
     console.log("resposta:", resposta)
     console.log('----------------------------------------------')
@@ -202,18 +191,4 @@ function atualizarGrafico(idUsuario, dados, myChart) {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
 
-}
-
-
-function exibirKPI() {
-    let kpis = document.querySelectorAll('.kpi');
-    let idUsuario = sessionStorage.ID_USUARIO;
-
-    div_grafico.innerHTML = `
-                    <div class="parametro-captura">
-                        <p id="paramCaptura" style="color: black"></p>
-                    </div>`;
-    console.log('este é o id da kpi', kpi)
-
-    recuperarDados(idUsuario, kpis);
 }

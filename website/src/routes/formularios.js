@@ -3,7 +3,11 @@ var router = express.Router();
 
 var formularioController = require("../controllers/formularioController");
 
-router.get("/recuperarDados/:idUsuario", function (req, res) {
+router.get("/atualizarGrafico/:idUsuario", function (req, res) {
+    formularioController.atualizarGrafico(req, res);
+})
+
+router.post("/recuperarDados/:idUsuario", function (req, res) {
     formularioController.recuperarDados(req, res);
 })
 
