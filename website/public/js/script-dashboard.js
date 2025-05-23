@@ -6,20 +6,20 @@ function exibirGraficosDoUsuario() {
     let graficos = document.querySelectorAll('.grafico');
     let idUsuario =  sessionStorage.ID_USUARIO;
 
-    for (var i = 0; i < graficos.length; i++) {
-        div_grafico.innerHTML = `<canvas id="myChartCanvas${i}"></canvas>
+    //for (var i = 0; i < graficos.length; i++) {
+        div_grafico.innerHTML = `<canvas id="myChartCanvas"></canvas>
                     <div class="label-captura">
-                        <p id="avisoCaptura${i.id}" style="color: white"></p>
+                        <p id="avisoCaptura" style="color: white"></p>
                     </div>`;
-                    console.log('este é o id do grafico', i, graficos)
+                    console.log('este é o id do grafico', graficos)
 
-        recuperarDados(i.id);
+        recuperarDados(graficos.id);
 
-    }
+   // }
 
     if (graficos.length > 0) {
         exibirGrafico(idUsuario)
-        console.log(graficos[0].id, 'parametros idusuario')
+        console.log(idUsuario, 'parametros idusuario')
     }
 }
 
@@ -107,12 +107,11 @@ function plotarGrafico(resposta, idUsuario) {
     // Inserindo valores recebidos em estrutura para plotar o gráfico
     for (i = 0; i < resposta.length; i++) {
         var registro = resposta[i];
-        labels.push(resposta[0].qtdLidos);
-        dados.datasets[0].data.push(registro[0].qtdLidos);
+        //labels.push(resposta[0].qtdLidos);
+        dados.datasets[0].data.push(registro.qtdLidos);
     }
 
     console.log("resposta:", resposta[0])
-
     console.log('----------------------------------------------')
     console.log('O gráfico será plotado com os respectivos valores:')
     console.log('Labels:')
@@ -130,7 +129,7 @@ function plotarGrafico(resposta, idUsuario) {
             plugins: {
                 title: {
                     display: true,
-                    text: 'índice de livros lidos de C.S Lewis',
+                    text: 'Índice de livros lidos de C.S Lewis',
                     font: {
                         size: 28
                     },
@@ -145,14 +144,14 @@ function plotarGrafico(resposta, idUsuario) {
 
     // Adicionando gráfico criado em div na tela
     let myChart = new Chart(
-        document.getElementById(`myChartCanvas${idUsuario}`),   
+        document.getElementById(`myChartCanvas`),   
         config
     );
 
-    setTimeout(() => atualizarGrafico(idUsuario, dados, myChart), 2000);
+    //setTimeout(() => atualizarGrafico(idUsuario, dados, myChart), 2000);
 }
 
-function atualizarGrafico(idUsuario, dados, myChart) {
+/*function atualizarGrafico(idUsuario, dados, myChart) {
     console.log("atualizarGrafico");
     fetch(`/formularios/recuperarDados/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
@@ -201,7 +200,7 @@ function atualizarGrafico(idUsuario, dados, myChart) {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
 
-}
+}*/
 
 
 function exibirKPI() {

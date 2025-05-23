@@ -11,22 +11,21 @@ key(email)
 
 select * from usuario;
 
-/*
 create table livros(
 idlivros int primary key auto_increment,
-titulo varchar(65) not null,
-editora varchar(45) not null,
-publicacao date,
-genero_literario varchar(45),
-numpagina int not null,
-constraint chk_editora check (editora in ('Thomas Nelson Brasil', 'HarperCollins Brasil'))
-); */
+qtdLivros int
+);
+
+insert into livros(qtdLivros)
+values (34); -- obs: existem apenas 34 livros de C.S Lewis
 
 create table usuario_livros(
 fkusuario int,
+fklivros int,
 genero_favorito varchar(45),
 qtdLidos int,
-constraint fk_usuario foreign key (fkusuario) references usuario(idusuario)
+constraint fk_usuario foreign key (fkusuario) references usuario(idusuario),
+constraint fk_livros foreign key (fklivros) references livros(idlivros)
 );
 
 /*INSERT INTO livros
