@@ -1,7 +1,5 @@
 const { options } = require("../../src/routes/formularios");
-
 b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-
 
 
 function exibirGraficosDoUsuario() {
@@ -140,7 +138,6 @@ function plotarGrafico(resposta, idUsuario) {
         config
     );
 
-    //setTimeout(() => atualizarGrafico(idUsuario, dados, myChart), 2000);
 }
 
 function atualizarGrafico(idUsuario, dados, myChart) {
@@ -150,7 +147,7 @@ function atualizarGrafico(idUsuario, dados, myChart) {
             response.json().then(function (novoRegistro) {
 
                 recuperarDados(idUsuario);
-                // alertar(novoRegistro, idAquario);
+
                 console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                 console.log(`Dados atuais do gráfico:`);
                 console.log(dados);
@@ -171,16 +168,13 @@ function atualizarGrafico(idUsuario, dados, myChart) {
                 } else {
                     // tirando e colocando valores no gráfico
                     dados.labels.shift(); // apagar o primeiro
-                    //dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
 
-                    dados.datasets[0].data.shift();  // apagar o primeiro de temperatura
-                    dados.datasets[0].data.push(novoRegistro[0].qtdLidos); // incluir uma nova medida de temperatura
+                    dados.datasets[0].data.shift();  
+                    dados.datasets[0].data.push(novoRegistro[0].qtdLidos);
 
                     myChart.update();
                 }
 
-                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                //proximaAtualizacao = setTimeout(() => atualizarGrafico(idUsuario, dados, myChart), 2000);
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
@@ -238,27 +232,45 @@ function plotarGraficoGenero(livros) {
             datasets: [{
                 label: 'Quantidade de gêneros literários',
                 data: generos,
+                borderWidth: 2,
+                borderRadius: 5,
                 backgroundColor: [
-                    'red',
-                    'blue',
-                    'orange',
-                    'yellow',
-                    'grey',
-                    'purple'
+                    'rgb(218,86,40)',
+                    'rgb(52,23,12)',
+                    'rgb(242,217,169)',
+                    'rgb(164,57,27)',
+                    'rgb(223,133,93)',
+                    'rgb(217,154,92)'
                 ],
                 borderColor: [
-                    'red',
-                    'blue',
-                    'orange',
-                    'yellow',
-                    'grey',
-                    'purple'
+                    'rgb(218,86,40)',
+                    'rgb(52,23,12)',
+                    'rgb(242,217,169)',
+                    'rgb(164,57,27)',
+                    'rgb(223,133,93)',
+                    'rgb(217,154,92)'
                 ],
                 borderWidth: 1
             }]
         },
 
         options: {
+            layout: {
+                padding: 20
+            },
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Gêneros literários mais amados pelos usuários do C.S Livros',
+                    font: {
+                        size: 20
+                    },
+                    padding: {
+                        top: 10,
+                        bottom: 10
+                    }
+                }
+            },
             scales: {
                 y: {
                     beginAtZero: true,
