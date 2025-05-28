@@ -1,7 +1,8 @@
-b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-b_lidos.innerHTML = sessionStorage.QTD_LIDOS;
+const { options } = require("../../src/routes/formularios");
 
-window.onload = exibirGraficosDoUsuario();
+b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+
 
 function exibirGraficosDoUsuario() {
     let graficos = document.querySelectorAll('.grafico');
@@ -190,5 +191,98 @@ function atualizarGrafico(idUsuario, dados, myChart) {
         .catch(function (error) {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
+
+}
+
+
+
+
+
+function listarGenero(){
+    fetch(`/formularios/listarGenero`)
+    .then(function (resposta){
+        if(resposta.ok){
+            resposta.json().then(function (livros){
+                console.log('Dados dos gêneros: ', livros);
+                plotarGraficoGenero(livros[0]);
+                
+            });
+        } else{
+            alert('Houve um erro ao tentar puxar os dados!');
+        }
+
+    })
+
+    .catch(function (erro){
+        console.error('#error',erro);
+        alert("Erro ao tentar comunicar com o servidor.");
+        
+    });
+    return false;
+}
+
+
+function plotarGraficoGenero(livros) {
+    console.log("plotarGrafico");
+    console.log('iniciando plotagem do gráfico...');
+
+    // Criando estrutura para plotar gráfico - labels
+    let labels = ['Suspense', 'Romance', 'Fantasia', 'Ficção científica', 'Comédia', 'Não ficção', 'Drama'];
+    let generos = [livros.suspense, livros.romance, livros.fantasia, livros.ficcao_cientifica, livros.comedia, livros.nao_ficcao, livros.drama];
+
+    // Criando estrutura para plotar gráfico - dados
+    const config = {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Quantidade de gêneros literários',
+                data: generos,
+                backgroundColor: [
+                    'red',
+                    'blue',
+                    'orange',
+                    'yellow',
+                    'grey',
+                    'purple'
+                ],
+                borderColor: [
+                    'red',
+                    'blue',
+                    'orange',
+                    'yellow',
+                    'grey',
+                    'purple'
+                ],
+                borderWidth: 1
+            }]
+        },
+
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    precision: 0
+                }
+            }
+        }
+    };
+
+    
+    console.log("resposta:", )
+    console.log('----------------------------------------------')
+    console.log('O gráfico será plotado com os respectivos valores:')
+    console.log('Labels:')
+    console.log(labels)
+    console.log('Dados:')
+    console.log(generos.datasets)
+    console.log('----------------------------------------------')
+
+
+    // Adicionando gráfico criado em div na tela
+    new Chart(
+        document.getElementById(`graficoGenerosCanvas`),
+        config
+    );
 
 }

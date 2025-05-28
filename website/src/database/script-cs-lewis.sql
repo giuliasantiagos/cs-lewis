@@ -11,22 +11,20 @@ key(email)
 
 select * from usuario;
 
-create table livros(
-idlivros int primary key auto_increment,
-qtdLivros int
-);
-
-insert into livros(qtdLivros)
-values (34); -- obs: existem apenas 34 livros de C.S Lewis
-
 create table usuario_livros(
 fkusuario int,
-fklivros int,
 genero_favorito varchar(45),
 qtdLidos int,
-constraint fk_usuario foreign key (fkusuario) references usuario(idusuario),
-constraint fk_livros foreign key (fklivros) references livros(idlivros)
+constraint fk_usuario foreign key (fkusuario) references usuario(idusuario)
 );
+
+select 	(select count(genero_favorito) from usuario_livros where genero_favorito = 'suspense' ) as suspense,
+		(select count(genero_favorito) from usuario_livros where genero_favorito = 'romance' ) as romance,
+        (select count(genero_favorito) from usuario_livros where genero_favorito = 'fantasia' ) as fantasia,
+        (select count(genero_favorito) from usuario_livros where genero_favorito = 'ficcao_cientifica' ) as ficcao_cientifica,
+        (select count(genero_favorito) from usuario_livros where genero_favorito = 'comedia' ) as comedia,
+        (select count(genero_favorito) from usuario_livros where genero_favorito = 'nao_ficcao' ) as nao_ficcao,
+        (select count(genero_favorito) from usuario_livros where genero_favorito = 'drama' ) as drama;
 
 /*INSERT INTO livros
 (titulo, editora, publicacao, genero_literario, numpagina) VALUES

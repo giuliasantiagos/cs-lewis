@@ -53,11 +53,7 @@ function enviar() {
       if (resposta.ok) {
         cardErro.style.display = "block";
 
-        resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.QTD_LIDOS = json.qtdLidos;
-                    sessionStorage.GENERO_FAVORITO = json.selectGenero;
+        
 
         mensagem_erro.innerHTML =
           "Formulário realizado com sucesso! Redirecionando para tela de dashboards...";
@@ -66,7 +62,6 @@ function enviar() {
           window.location = "./dashboard.html";
         }, "2000");
 
-      });
 
         limparFormulario();
         finalizarAguardar();

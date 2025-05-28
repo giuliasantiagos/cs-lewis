@@ -13,7 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body onload="validarSessao(), exibirKPI(),  atualizacaoPeriodica()"></body>
+<body onload="validarSessao(), listarGenero(), exibirGraficosDoUsuario(),  atualizacaoPeriodica()"></body>
 
 <div class="janela">
     <div class="header-left">
@@ -47,22 +47,24 @@
     </div>
 
     <div class="dash">
-        <div id="alerta">
-        </div>
+
+        <div id="graficoGeneros"></div>
+        <div id="alerta"></div>
 
         <div class="btns-dash">
 
             <div class="grafico" id="div_grafico"></div>
-            <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
         </div>
         <div class="dash">
             <div id="alerta">
             </div>
+        </div>
 
-            <!-- <div class="hello">
-                <h3>Livros lidos: <span id="b_lidos">num</span></h3>
-            </div> -->
-
+        <div id="graficoGeneros" class="graficoGeneros">
+            <h3>Gêneros</h3>
+            <div>
+                <canvas id="graficoGenerosCanvas"></canvas>
+            </div>
         </div>
     </div>
 

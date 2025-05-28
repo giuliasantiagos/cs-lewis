@@ -7,9 +7,11 @@ router.get("/atualizarGrafico/:idUsuario", function (req, res) {
     formularioController.atualizarGrafico(req, res);
 })
 
-router.post("/recuperarDados/:idUsuario", function (req, res) {
+router.get("/recuperarDados/:idUsuario", function (req, res) {
     formularioController.recuperarDados(req, res);
 })
+
+router.get("/listarGenero", formularioController.listarGenero);
 
 //Recebendo os dados do html e direcionando para a função cadastrar de usuarioController.js
 router.post("/enviar", function (req, res) {
