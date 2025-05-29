@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,15 +9,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jacques+Francois&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./js/sessao.js"></script>
 </head>
-<body onload="obterDadosGrafico()">
+
+<body onload="listarKPI(), plotarKPI()">
 
     <div class="janela">
         <div class="header-left">
             <div class="logo"><a href="./formulario.html">
-            <img src="./img/logo_retro.png">
-            </a></div>
+                    <img src="./img/logo_retro.png">
+                </a></div>
             <h1>C.S Livros</h1>
 
             <div class="hello">
@@ -30,9 +32,9 @@
             </div>
 
             <div class="btn-nav-white">
-
-                <h3>Gráficos</h3>
-
+                <a href="./dashboard.html">
+                    <h3>Gráficos</h3>
+                </a>
             </div>
 
             <div class="btn-logout" onclick="limparSessao()">
@@ -43,16 +45,17 @@
 
         <div class="dash">
             <div id="alerta">
+
+                <div class="hello">
+                    <h3>Olá, <span id="b_qtd">num</span>!</h3>
+                </div>
+
             </div>
 
-            <div class="btns-dash" id="btnAquario">
-                <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
-            </div>
-            <div id="graficos">
-            </div>
         </div>
     </div>
-    
+
 </body>
+<script src="./js/script-indicacao.js"></script>
 
 </html>
