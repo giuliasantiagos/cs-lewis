@@ -18,14 +18,6 @@ qtdLidos int,
 constraint fk_usuario foreign key (fkusuario) references usuario(idusuario)
 );
 
-select 	(select count(genero_favorito) from usuario_livros where genero_favorito = 'suspense' ) as suspense,
-		(select count(genero_favorito) from usuario_livros where genero_favorito = 'romance' ) as romance,
-        (select count(genero_favorito) from usuario_livros where genero_favorito = 'fantasia' ) as fantasia,
-        (select count(genero_favorito) from usuario_livros where genero_favorito = 'ficcao_cientifica' ) as ficcao_cientifica,
-        (select count(genero_favorito) from usuario_livros where genero_favorito = 'comedia' ) as comedia,
-        (select count(genero_favorito) from usuario_livros where genero_favorito = 'nao_ficcao' ) as nao_ficcao,
-        (select count(genero_favorito) from usuario_livros where genero_favorito = 'drama' ) as drama;
-
 /*INSERT INTO livros
 (titulo, editora, publicacao, genero_literario, numpagina) VALUES
 ('Cartas de um Diabo a Seu Aprendiz',         'Thomas Nelson Brasil', '2022-06-06', 'Suspense',       224),

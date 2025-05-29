@@ -6,12 +6,6 @@ function exibirGraficosDoUsuario() {
     let graficos = document.querySelectorAll('.grafico');
     let idUsuario = sessionStorage.ID_USUARIO;
 
-    div_grafico.innerHTML = `<canvas id="myChartCanvas"></canvas>
-                    <div class="label-captura">
-                        <p id="avisoCaptura" style="color: white"></p>
-                    </div>`;
-    console.log('este é o id do grafico', graficos);
-
     recuperarDados(graficos.id);
 
     if (graficos.length > 0) {
@@ -124,8 +118,8 @@ function plotarGrafico(resposta, idUsuario) {
                         size: 20
                     },
                     padding: {
-                        top: 5,
-                        bottom: 5
+                        top: 20,
+                        bottom: 20
                     }
                 }
             }
@@ -255,9 +249,6 @@ function plotarGraficoGenero(livros) {
         },
 
         options: {
-            layout: {
-                padding: 20
-            },
             plugins: {
                 title: {
                     display: true,
@@ -266,8 +257,8 @@ function plotarGraficoGenero(livros) {
                         size: 20
                     },
                     padding: {
-                        top: 10,
-                        bottom: 10
+                        top: 20,
+                        bottom: 20
                     }
                 }
             },
@@ -280,7 +271,6 @@ function plotarGraficoGenero(livros) {
         }
     };
 
-    
     console.log("resposta:", )
     console.log('----------------------------------------------')
     console.log('O gráfico será plotado com os respectivos valores:')
@@ -289,7 +279,6 @@ function plotarGraficoGenero(livros) {
     console.log('Dados:')
     console.log(generos.datasets)
     console.log('----------------------------------------------')
-
 
     // Adicionando gráfico criado em div na tela
     new Chart(

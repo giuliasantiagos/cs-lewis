@@ -225,25 +225,6 @@ body{
     padding-top: 20px;
   }
 
-  table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-  padding: 5px;
-}
-
-td{
-  text-align: left;
-  padding: 1px;
-  font-size: 12px;
-}
-
-th{
-  text-align: justify;
-  padding: 1px;
-  font-size: 12px;
-}
-
 .formulario .container .div-options{
     display: flex;
     flex-direction: column;
@@ -259,6 +240,8 @@ th{
 .formulario select{
     background-color: var(--cor-fundo);
     border-radius: 5px;
+    padding: 5px;
+    border: 1px var(--cinza) solid;
   }
 
  .formulario .button{
@@ -269,4 +252,13 @@ th{
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.container input{
+    background-color: var(--cor-fundo);
+    border-radius: 5px;
+    border: 1px var(--cinza) solid;
+    font-family: arial, sans-serif;
+    font-size: 12px;
+    padding: 5px;
 }
