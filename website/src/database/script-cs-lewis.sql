@@ -9,7 +9,11 @@ senha varchar(30) not null,
 key(email)
 );
 
-select * from usuario;
+create table livros(
+idlivro int primary key auto_increment,
+titulo varchar(60),
+genero varchar(60)
+);
 
 create table usuario_livros(
 fkusuario int,
@@ -18,15 +22,14 @@ qtdLidos int,
 constraint fk_usuario foreign key (fkusuario) references usuario(idusuario)
 );
 
-/*INSERT INTO livros
-(titulo, editora, publicacao, genero_literario, numpagina) VALUES
-('Cartas de um Diabo a Seu Aprendiz',         'Thomas Nelson Brasil', '2022-06-06', 'Suspense',       224),
-('Até que Tenhamos Rostos',                   'Thomas Nelson Brasil', '2017-07-03', 'Romance',              352),
-('As Crônicas de Nárnia',                     'HarperCollins Brasil', '2013-10-21', 'Fantasia',        752),
-('Trilogia Cósmica',                          'Thomas Nelson Brasil', '2017-01-09', 'Ficção científica',               896),
-('A Torre Sombria',                           'Thomas Nelson Brasil', '2022-08-08', 'Terror',                160),
-('As Crônicas de Nárnia',                     'HarperCollins Brasil', '2013-10-21', 'Fantasia',        752),
-('Cartas de um Diabo a Seu Aprendiz',         'Thomas Nelson Brasil', '2022-06-06', 'Comédia',       224),
-('Todo o meu Caminho Diante de Mim',          'Thomas Nelson Brasil', '2023-01-30', 'Não ficção',         368),
-('A Anatomia de um Luto',                     'Thomas Nelson Brasil', '2020-11-16', 'Drama',                 112);
-*/
+INSERT INTO livros (titulo, genero) 
+VALUES	('Cartas de um Diabo a Seu Aprendiz', 'Suspense'),
+		('Até que Tenhamos Rostos', 'Romance'),
+		('As Crônicas de Nárnia', 'Fantasia'),
+		('Trilogia Cósmica', 'Ficção científica'),
+		('A Torre Sombria', 'Terror'),
+		('As Crônicas de Nárnia', 'Fantasia'),
+		('Cartas de um Diabo a Seu Aprendiz', 'Comédia'),
+		('Todo o meu Caminho Diante de Mim', 'Não ficção'),
+		('A Anatomia de um Luto', 'Drama');
+

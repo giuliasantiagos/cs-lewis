@@ -1,7 +1,6 @@
 var formularioModel = require("../models/formularioModel");
 
 function enviar(req, res) {
-    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var selectGenero = req.body.selectGeneroServer;
     var qtdLidos = req.body.qtdLidosServer;
     var idUsuario = req.body.idUsuario;
@@ -12,7 +11,6 @@ function enviar(req, res) {
     } else if (qtdLidos == undefined) {
         res.status(400).send("qtdLidos está undefined!");
     } else {
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
         formularioModel.enviar(selectGenero, qtdLidos, idUsuario)
             .then(
                 function (resultado) {
@@ -34,6 +32,8 @@ function enviar(req, res) {
     }
 }
 
+
+//////////// Listar Qtd ////////////
 function listarQtd(req, res){
     var idUsuario = req.params.idUsuario;
     formularioModel.listarQtd(idUsuario)
@@ -51,6 +51,33 @@ function listarQtd(req, res){
     })
 }
 
+
+
+//////////// Atualizar Qtd ////////////
+function atualizarQtd(req, res){
+    var novaQtdLidos = req.body.qtdLidosServer;
+    var idUsuario = req.params.idUsuario;
+    console.log('nova qtd: ', novaQtdLidos);
+
+
+    avisoModel.atualizarQtd(novaQtdLidos, idUsuario)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+
+
+//////////// Listar Gênero ////////////
 function listarGenero(req, res){
     formularioModel.listarGenero()
     .then(function (resultado){
@@ -71,5 +98,6 @@ function listarGenero(req, res){
 module.exports = {
     enviar,
     listarQtd,
+    atualizarQtd,
     listarGenero
 }

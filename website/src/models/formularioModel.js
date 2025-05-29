@@ -10,6 +10,15 @@ function listarQtd(idUsuario) {
     return database.executar(instrucaoSql);
 }
 
+function atualizarQtd(idUsuario, novaQtdLidos) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarQtd(): ", idUsuario);
+    var instrucaoSql = `
+        UPDATE usuario_livros SET qtdLidos = '${novaQtdLidos}' WHERE fkusuario = ${idUsuario};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 function listarGenero() {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarGenero(): ");
     var instrucaoSql = `
@@ -38,5 +47,6 @@ function enviar(selectGenero, qtdLidos, idUsuario) {
 module.exports = {
     enviar,
     listarQtd,
+    atualizarQtd,
     listarGenero
 }

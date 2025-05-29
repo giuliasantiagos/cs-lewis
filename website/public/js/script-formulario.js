@@ -57,7 +57,7 @@ function enviar() {
           console.log(json);
           console.log(JSON.stringify(json));
           sessionStorage.QTD_LIDOS = json.qtdLidos;
-          sessionStorage.GENEROS_FAVORITOS = json.genero_favorito;
+          sessionStorage.GENEROS_FAVORITOS = json.selectGenero;
 
         mensagem_erro.innerHTML =
           "Formulário realizado com sucesso! Redirecionando para tela de dashboards...";
