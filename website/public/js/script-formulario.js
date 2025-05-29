@@ -53,7 +53,11 @@ function enviar() {
       if (resposta.ok) {
         cardErro.style.display = "block";
 
-        
+        resposta.json().then(json => {
+          console.log(json);
+          console.log(JSON.stringify(json));
+          sessionStorage.QTD_LIDOS = json.qtdLidos;
+          sessionStorage.GENEROS_FAVORITOS = json.genero_favorito;
 
         mensagem_erro.innerHTML =
           "Formulário realizado com sucesso! Redirecionando para tela de dashboards...";
@@ -65,6 +69,7 @@ function enviar() {
 
         limparFormulario();
         finalizarAguardar();
+      });
       } else {
         throw "Houve um erro ao tentar realizar o formulário!";
       }

@@ -3,13 +3,9 @@ var router = express.Router();
 
 var formularioController = require("../controllers/formularioController");
 
-router.get("/atualizarGrafico/:idUsuario", function (req, res) {
-    formularioController.atualizarGrafico(req, res);
-})
-
-router.get("/recuperarDados/:idUsuario", function (req, res) {
-    formularioController.recuperarDados(req, res);
-})
+router.get("/listarQtd/:idUsuario", function (req, res){
+    formularioController.listarQtd(req, res);
+});
 
 router.get("/listarGenero", formularioController.listarGenero);
 

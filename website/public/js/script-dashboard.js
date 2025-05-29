@@ -1,121 +1,71 @@
-const { options } = require("../../src/routes/formularios");
 b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
 
-function exibirGraficosDoUsuario() {
-    let graficos = document.querySelectorAll('.grafico');
+///////// LISTAR QTD /////////
+
+function listarQtd(){
     let idUsuario = sessionStorage.ID_USUARIO;
+    console.log(idUsuario);
+    
 
-    recuperarDados(graficos.id);
-
-    if (graficos.length > 0) {
-        exibirGrafico(idUsuario)
-        console.log(idUsuario, 'parametros idusuario')
-    }
-}
-
-function exibirGrafico(idUsuario) {
-    console.log("exibirGrafico chegou o id", idUsuario);
-    let todosOsGraficos = JSON.parse(sessionStorage.ID_USUARIO);
-
-    for (i = 0; i < todosOsGraficos.length; i++) {
-        // exibindo - ou não - o gráfico
-        if (todosOsGraficos[i].id != idUsuario) {
-            let elementoAtual = document.getElementById(`grafico${todosOsGraficos[i].id}`)
-            if (elementoAtual.classList.contains("display-block")) {
-                elementoAtual.classList.remove("display-block")
-            }
-            elementoAtual.classList.add("display-none")
-
-        }
-    }
-
-    //exibindo - ou não - o gráfico
-    let graficoExibir = document.getElementById(`div_grafico`);
-    graficoExibir.classList.remove("display-none");
-    graficoExibir.classList.add("display-block");
-
-}
-
-
-function recuperarDados() {
-    console.log("recuperarDados");
-    console.log(sessionStorage.ID_USUARIO);
-    let idUsuario = sessionStorage.ID_USUARIO;
-
-    fetch(`/formularios/recuperarDados/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
-        if (response.ok) {
-            response.json().then(function (resposta) {
-                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                resposta.reverse();
-
-                plotarGrafico(resposta, idUsuario);
-
+    fetch(`/formularios/listarQtd/${idUsuario}`)
+    .then(function (resposta){
+        if(resposta.ok){
+            resposta.json().then(function (resposta){
+                console.log('Dados dos gêneros: ', resposta);
+                plotarGraficoQtd(resposta, idUsuario);
+                
             });
-        } else {
-            console.error('Nenhum dado encontrado ou erro na API');
+        } else{
+            alert('Houve um erro ao tentar puxar os dados!');
         }
-    })
-        .catch(function (erro) {
-            console.error(`Erro na obtenção dos dados p/ gráfico: ${erro}`);
-        });
 
+    })
+
+    .catch(function (erro){
+        console.error('#error',erro);
+        alert("Erro ao tentar comunicar com o servidor.");
+        
+    });
     return false;
 }
 
 
-function plotarGrafico(resposta, idUsuario) {
+function plotarGraficoQtd(resposta, idUsuario) {
     console.log("plotarGrafico");
     console.log('iniciando plotagem do gráfico...');
 
     // Criando estrutura para plotar gráfico - labels
-    let labels = ['Livros lidos', 'Livros restantes'];
+    let labels = ['Lidos', 'Não lidos'];
+    let dados = [];
 
     // Criando estrutura para plotar gráfico - dados
-    const dados = {
-        labels: labels,
-        datasets: [{
-            label: 'Quantidade de livros',
-            backgroundColor: [
-                '#F49459',
-                '#4E3B28'
-            ],
-            data: []
+    const config = {
+        type: 'doughnut',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: '',
+                data: dados,
+                backgroundColor: [
+                    'rgb(52,23,12)',
+                    'rgb(164,57,27)'
+                ],
+                borderColor: [
+                    'rgb(52,23,12)',
+                    'rgb(164,57,27)'
+                ],
+                borderWidth: 1
+            }]
         },
 
-        ]
-    };
-
-    console.log('----------------------------------------------')
-    console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-    console.log(resposta.body)
-
-    // Inserindo valores recebidos em estrutura para plotar o gráfico
-    var registro = resposta[0];
-    dados.datasets[0].data.push(registro.qtdLidos);
-    dados.datasets[0].data.push(34 - (registro.qtdLidos));
-
-    console.log("resposta:", resposta)
-    console.log('----------------------------------------------')
-    console.log('O gráfico será plotado com os respectivos valores:')
-    console.log('Labels:')
-    console.log(labels)
-    console.log('Dados:')
-    console.log(dados.datasets)
-    console.log('----------------------------------------------')
-
-    // Criando estrutura para plotar gráfico - config
-
-    let config = {
-        type: 'doughnut',
-        data: dados,
         options: {
             plugins: {
                 title: {
                     display: true,
-                    text: 'Índice de livros lidos de C.S Lewis',
+                    text: 'Quantidade de livros lidos',
                     font: {
-                        size: 20
+                        size: 30
                     },
                     padding: {
                         top: 20,
@@ -124,67 +74,30 @@ function plotarGrafico(resposta, idUsuario) {
                 }
             }
         }
-    }
+    };
 
-    // Adicionando gráfico criado em div na tela
-    let myChart = new Chart(
+    config.data.datasets[0].data.push(resposta[0].qtdLidos);
+    config.data.datasets[0].data.push(34-(resposta[0].qtdLidos));
+
+    console.log("resposta:", )
+    console.log('----------------------------------------------')
+    console.log('O gráfico será plotado com os respectivos valores:')
+    console.log('Labels:')
+    console.log(labels)
+    console.log('Dados:')
+    console.log(dados.datasets)
+    console.log('----------------------------------------------')
+
+    new Chart(
         document.getElementById(`myChartCanvas`),
         config
     );
 
 }
 
-function atualizarGrafico(idUsuario, dados, myChart) {
-    console.log("atualizarGrafico");
-    fetch(`/formularios/atualizarGrafico/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
-        if (response.ok) {
-            response.json().then(function (novoRegistro) {
-
-                recuperarDados(idUsuario);
-
-                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                console.log(`Dados atuais do gráfico:`);
-                console.log(dados);
-
-                let avisoCaptura = document.getElementById(`avisoCaptura${idUsuario}`)
-                avisoCaptura.innerHTML = ""
 
 
-                if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
-                    console.log("---------------------------------------------------------------")
-                    console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                    avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
-                    console.log("Horário do novo dado capturado:")
-                    console.log(novoRegistro[0].momento_grafico)
-                    console.log("Horário do último dado capturado:")
-                    console.log(dados.labels[dados.labels.length - 1])
-                    console.log("---------------------------------------------------------------")
-                } else {
-                    // tirando e colocando valores no gráfico
-                    dados.labels.shift(); // apagar o primeiro
-
-                    dados.datasets[0].data.shift();  
-                    dados.datasets[0].data.push(novoRegistro[0].qtdLidos);
-
-                    myChart.update();
-                }
-
-            });
-        } else {
-            console.error('Nenhum dado encontrado ou erro na API');
-            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-            proximaAtualizacao = setTimeout(() => atualizarGrafico(idUsuario, dados, myChart), 2000);
-        }
-    })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-        });
-
-}
-
-
-
-
+///////// LISTAR GÊNERO /////////
 
 function listarGenero(){
     fetch(`/formularios/listarGenero`)
@@ -280,7 +193,6 @@ function plotarGraficoGenero(livros) {
     console.log(generos.datasets)
     console.log('----------------------------------------------')
 
-    // Adicionando gráfico criado em div na tela
     new Chart(
         document.getElementById(`graficoGenerosCanvas`),
         config
