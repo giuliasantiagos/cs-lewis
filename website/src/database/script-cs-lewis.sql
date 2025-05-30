@@ -32,4 +32,3 @@ VALUES	('Cartas de um Diabo a Seu Aprendiz', 'Suspense'),
 		('Cartas de um Diabo a Seu Aprendiz', 'Comédia'),
 		('Todo o meu Caminho Diante de Mim', 'Não ficção'),
 		('A Anatomia de um Luto', 'Drama');
-

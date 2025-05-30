@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>C.S Livros</title>
-    <link rel="stylesheet" href="./css/dashboard.css">
+    <link rel="stylesheet" href="./css/style_indicacao.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jacques+Francois&display=swap" rel="stylesheet">
     <script src="./js/sessao.js"></script>
 </head>
 
-<body onload="">
+<body>
 
     <div class="janela">
         <div class="header-left">
@@ -46,18 +46,16 @@
         <div class="dash">
             <div id="alerta">
 
-                <div class="hello">
-                    <h3>Lidos:<span id="b_qtd">num</span>!</h3>
+                <div class="info">
+                    <h3>Livros lidos: <span id="b_qtd"> num</span></h3>
+                    <h3>Livros não lidos: <span id="b_restantes"> num</span></h3>
                 </div>
 
-                <div class="hello">
-                    <h3>Restantes:<span id="b_restantes">num</span>!</h3>
-                </div>
             </div>
 
             <div class="container">
-                <h1>Sorteie sua pŕoxima leitura!</h1>
-                <button onclick="sortearLeitura()">Sortear livro</button>
+                <h1>Que tal sortear sua pŕoxima leitura?</h1>
+                <button onclick="sortearLeitura()" class="btn-nav">Sortear livro</button>
                 <div id="resposta"></div>
             </div>
 

@@ -17,53 +17,6 @@ body {
   font-family: 'Jacques Francois', serif;
 }
 
-/* pagina graficos */
-
-.dash-header {
-  background-color: #212124;
-}
-
-.dash {
-  width: 80%;
-  position: relative;
-  top: 0;
-  left: 20%;
-  background-color: var(--cor-fundo);
-  height: 100vh;
-  overflow: auto;
-}
-
-.btns-dash {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 30px;
-  gap: 30px;
-  flex-wrap: wrap;
-  padding: 0 30% 0 30%;
-}
-
-.graph {
-  width: 70%;
-  padding-top: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.tituloGraficos {
-  color: rgb(216, 216, 216);
-  display: flex;
-  justify-content: center;
-}
-
-canvas {
-  width: 100% !important;
-  height: 100% !important;
-}
-
-/* PAGINA DOS GRÁFICOS */
-
 .janela {
   display: flex;
 }
@@ -86,18 +39,6 @@ canvas {
   align-items: center;
   border-right: none;
   background-color: var(--laranja);
-}
-
-.dash-right {
-  display: flex;
-  width: 70%;
-  height: fit-content;
-  background-color: #161618;
-  position: relative;
-  top: 0;
-  left: 25%;
-  height: 100vh;
-  overflow: auto;
 }
 
 .header-left h1 {
@@ -137,6 +78,7 @@ canvas {
   color: var(--cor-fundo);
   background-color: var(--marrom);
   border-radius: 10px;
+  border: none;
   text-align: center;
   padding: 2% 5%;
   font-family: Arial, Helvetica, sans-serif;
@@ -177,10 +119,55 @@ canvas {
   cursor: pointer;
 }
 
-.grafico{
-  width: 65%;
+/* Sortear */
+.dash {
+  width: 80%;
+  position: relative;
+  top: 0;
+  left: 20%;
+  background-color: var(--cor-fundo);
+  height: 100vh;
+  overflow: auto;
 }
 
-.graficoGeneros{
-  width: 1000px;
+.info{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 50px;
+}
+
+.info h3 {
+  color: var(--cinza);
+  font-weight: 300;
+  font-size: 1.2rem;
+}
+
+.info h3 span {
+  font-weight: 800;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container button{
+    width: 20%;
+}
+
+.container #resposta{
+    margin-top: 50px;
+    gap: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+}
+
+#resposta img{
+    width: 150px;
+    border-radius: 5px;
 }
