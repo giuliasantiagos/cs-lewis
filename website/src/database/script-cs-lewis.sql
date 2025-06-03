@@ -9,26 +9,10 @@ senha varchar(30) not null,
 key(email)
 );
 
-create table livros(
-idlivro int primary key auto_increment,
-titulo varchar(60),
-genero varchar(60)
-);
-
 create table usuario_livros(
 fkusuario int,
+livro_favorito varchar(60),
 genero_favorito varchar(45),
 qtdLidos int,
 constraint fk_usuario foreign key (fkusuario) references usuario(idusuario)
 );
-
-INSERT INTO livros (titulo, genero) 
-VALUES	('Cartas de um Diabo a Seu Aprendiz', 'Suspense'),
-		('Até que Tenhamos Rostos', 'Romance'),
-		('As Crônicas de Nárnia', 'Fantasia'),
-		('Trilogia Cósmica', 'Ficção científica'),
-		('A Torre Sombria', 'Terror'),
-		('As Crônicas de Nárnia', 'Fantasia'),
-		('Cartas de um Diabo a Seu Aprendiz', 'Comédia'),
-		('Todo o meu Caminho Diante de Mim', 'Não ficção'),
-		('A Anatomia de um Luto', 'Drama');
