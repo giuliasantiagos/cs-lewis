@@ -95,39 +95,6 @@ function plotarGraficoQtd(resposta, idUsuario) {
 
 }
 
-// function atualizarQtd(idUsuario, dados, myChart){
-//     fetch(`formularios/atualizarQtd/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
-//         if (response.ok) {
-//             response.json().then(function (novoRegistro) {
-
-//                 listarQtd(idUsuario);
-
-//                 console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-//                 console.log(`Dados atuais do gráfico: `, dados);
-//                 if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
-//                     console.log("---------------------------------------------------------------")
-//                     console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-//                     console.log("---------------------------------------------------------------")
-//                 } else {
-                    
-//                     dados.labels.shift();
-
-//                     config.data.datasets[0].data.shift();  
-//                     config.data.datasets[0].data.push(novoRegistro[0].qtdLidos);
-
-//                     myChart.update();
-//                 }
-
-//             });
-//         } else {
-//             console.error('Nenhum dado encontrado ou erro na API');
-//         }
-//     })
-//         .catch(function (error) {
-//             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-//         });
-//     }
-
 
 
 ///////// LISTAR GÊNERO /////////
