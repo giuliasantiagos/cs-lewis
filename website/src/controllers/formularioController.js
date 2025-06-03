@@ -1,6 +1,7 @@
 var formularioModel = require("../models/formularioModel");
 
 function enviar(req, res) {
+    var selectLivro = req.body.selectLivroServer;
     var selectGenero = req.body.selectGeneroServer;
     var qtdLidos = req.body.qtdLidosServer;
     var idUsuario = req.body.idUsuario;
@@ -10,13 +11,16 @@ function enviar(req, res) {
         res.status(400).send("selectGenero está undefined!");
     } else if (qtdLidos == undefined) {
         res.status(400).send("qtdLidos está undefined!");
+    } else if (selectLivro == undefined) {
+        res.status(400).send("selectLivro está undefined!");
     } else {
-        formularioModel.enviar(selectGenero, qtdLidos, idUsuario)
+        formularioModel.enviar(selectLivro, selectGenero, qtdLidos, idUsuario)
             .then(
                 function (resultado) {
                     res.json({
                         qtdLidos: qtdLidos,
-                        selectGenero: selectGenero
+                        selectGenero: selectGenero,
+                        selectLivro: selectLivro
                     });
                 }
             ).catch(
@@ -52,31 +56,6 @@ function listarQtd(req, res){
 }
 
 
-
-//////////// Atualizar Qtd ////////////
-function atualizarQtd(req, res){
-    var novaQtdLidos = req.body.qtdLidosServer;
-    var idUsuario = req.params.idUsuario;
-    console.log('nova qtd: ', novaQtdLidos);
-
-
-    avisoModel.atualizarQtd(novaQtdLidos, idUsuario)
-        .then(
-            function (resultado) {
-                res.json(resultado);
-            }
-        )
-        .catch(
-            function (erro) {
-                console.log(erro);
-                console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
-}
-
-
-
 //////////// Listar Gênero ////////////
 function listarGenero(req, res){
     formularioModel.listarGenero()
@@ -95,9 +74,27 @@ function listarGenero(req, res){
 }
 
 
+//////////// Listar Livro ////////////
+function listarLivro(req, res){
+    formularioModel.listarLivro()
+    .then(function (resultado){
+        if(resultado.length > 0){
+            res.status(200).json(resultado);
+        } else{
+            res.status(204).send("Nenhum resultado encontrado.");
+        }
+    }) 
+    .catch(function (erro){
+        console.log(erro);
+        console.log('Houve um erro ao buscar os livros! ', erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    })
+}
+
+
 module.exports = {
     enviar,
     listarQtd,
-    atualizarQtd,
-    listarGenero
+    listarGenero,
+    listarLivro
 }

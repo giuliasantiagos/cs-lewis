@@ -23,12 +23,6 @@
         </div>
     </header>
 
-    <div class="alerta_erro">
-        <div class="card_erro" id="cardErro">
-            <span id="mensagem_erro"></span>
-        </div>
-    </div>
-
     <!-- Banner -->
     <section class="banner">
         <div class="content">
@@ -55,6 +49,12 @@
                 <p>Não possui uma conta? <a href="./cadastro.html">Cadastre-se</a></p>
 
                 <button onclick="entrar()" class="button">Entrar</button>
+
+                <div id="div_aguardar" class="loading-div">
+                    <img src="./img/circle-loading.gif" id="loading-gif">
+                </div>
+
+                <div id="div_erros_login"></div>
 
             </div>
 

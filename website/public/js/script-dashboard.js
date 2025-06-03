@@ -103,9 +103,9 @@ function listarGenero(){
     fetch(`/formularios/listarGenero`)
     .then(function (resposta){
         if(resposta.ok){
-            resposta.json().then(function (livros){
-                console.log('Dados dos gêneros: ', livros);
-                plotarGraficoGenero(livros[0]);
+            resposta.json().then(function (genero){
+                console.log('Dados dos gêneros: ', genero);
+                plotarGraficoGenero(genero[0]);
                 
             });
         } else{
@@ -123,13 +123,13 @@ function listarGenero(){
 }
 
 
-function plotarGraficoGenero(livros) {
+function plotarGraficoGenero(genero) {
     console.log("plotarGrafico");
     console.log('iniciando plotagem do gráfico...');
 
     // Criando estrutura para plotar gráfico - labels
     let labels = ['Suspense', 'Romance', 'Fantasia', 'Ficção científica', 'Comédia', 'Não ficção', 'Drama'];
-    let generos = [livros.suspense, livros.romance, livros.fantasia, livros.ficcao_cientifica, livros.comedia, livros.nao_ficcao, livros.drama];
+    let generos = [genero.suspense, genero.romance, genero.fantasia, genero.ficcao_cientifica, genero.comedia, genero.nao_ficcao, genero.drama];
 
     // Criando estrutura para plotar gráfico - dados
     const config = {
@@ -147,7 +147,8 @@ function plotarGraficoGenero(livros) {
                     'rgb(242,217,169)',
                     'rgb(164,57,27)',
                     'rgb(223,133,93)',
-                    'rgb(217,154,92)'
+                    'rgb(217,154,92)',
+                    'rgb(108,100,92)'
                 ],
                 borderColor: [
                     'rgb(218,86,40)',
@@ -155,7 +156,8 @@ function plotarGraficoGenero(livros) {
                     'rgb(242,217,169)',
                     'rgb(164,57,27)',
                     'rgb(223,133,93)',
-                    'rgb(217,154,92)'
+                    'rgb(217,154,92)',
+                    'rgb(108,100,92)'
                 ],
                 borderWidth: 1
             }]
@@ -165,7 +167,7 @@ function plotarGraficoGenero(livros) {
             plugins: {
                 title: {
                     display: true,
-                    text: 'Gêneros literários mais amados pelos usuários do C.S Livros',
+                    text: 'Gêneros literários favoritos dos usuários de C.S Livros',
                     font: {
                         size: 20
                     },
@@ -195,6 +197,103 @@ function plotarGraficoGenero(livros) {
 
     new Chart(
         document.getElementById(`graficoGenerosCanvas`),
+        config
+    );
+
+}
+
+
+
+///////// LISTAR LIVROS /////////
+
+function listarLivro(){
+    fetch(`/formularios/listarLivro`)
+    .then(function (resposta){
+        if(resposta.ok){
+            resposta.json().then(function (livros){
+                console.log('Dados dos gêneros: ', livros);
+                plotarGraficoLivro(livros[0]);
+                
+            });
+        } else{
+            alert('Houve um erro ao tentar puxar os dados!');
+        }
+
+    })
+
+    .catch(function (erro){
+        console.error('#error',erro);
+        alert("Erro ao tentar comunicar com o servidor.");
+        
+    });
+    return false;
+}
+
+
+function plotarGraficoLivro(livros) {
+    console.log("plotarGrafico");
+    console.log('iniciando plotagem do gráfico...');
+
+    let labels = ['As Crônicas de Nárnia', 'Cristianismo Puro e Simples', 'Cartas de um Diabo a Seu Aprendiz', 'O Peso da Glória', 'Além do Planeta Silencioso'];
+    let livroFavorito = [livros.cronicas, livros.cristianismo, livros.cartas, livros.peso, livros.planeta];
+
+    const config = {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                axis: 'y',
+                label: 'Quantidade de livros favoritos',
+                data: livroFavorito,
+                borderWidth: 2,
+                borderRadius: 5,
+                backgroundColor: [
+                    'rgb(218,86,40)',
+                    'rgb(52,23,12)',
+                    'rgb(242,217,169)',
+                    'rgb(164,57,27)',
+                    'rgb(223,133,93)'
+                ],
+                borderColor: [
+                    'rgb(218,86,40)',
+                    'rgb(52,23,12)',
+                    'rgb(242,217,169)',
+                    'rgb(164,57,27)',
+                    'rgb(223,133,93)'
+                ],
+                borderWidth: 1
+            }]
+        },
+
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Livros favoritos dos usuários de C.S Livros',
+                    font: {
+                        size: 20
+                    },
+                    padding: {
+                        top: 5,
+                        bottom: 5
+                    }
+                }
+            }, 
+            indexAxis: 'y',
+        }
+    };
+
+    console.log("resposta:", )
+    console.log('----------------------------------------------')
+    console.log('O gráfico será plotado com os respectivos valores:')
+    console.log('Labels:')
+    console.log(labels)
+    console.log('Dados:')
+    console.log(livroFavorito.datasets)
+    console.log('----------------------------------------------')
+
+    new Chart(
+        document.getElementById(`graficoLivrosCanvas`),
         config
     );
 

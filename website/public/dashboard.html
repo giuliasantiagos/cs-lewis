@@ -13,7 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body onload="validarSessao(), listarGenero(), listarQtd()"></body>
+<body onload="validarSessao(), listarGenero(), listarQtd(), listarLivro()"></body>
 
 <div class="janela">
     <div class="header-left">
@@ -55,10 +55,14 @@
                 <canvas id="myChartCanvas"></canvas>
             </div>
 
-
             <!-- Gráfico gêneros -->
             <div id="graficoGeneros" class="graficoGeneros">
                 <canvas id="graficoGenerosCanvas"></canvas>
+            </div>
+
+            <!-- Gráfico livros -->
+            <div id="graficoLivros" class="graficoLivros">
+                <canvas id="graficoLivrosCanvas"></canvas>
             </div>
 
         </div>

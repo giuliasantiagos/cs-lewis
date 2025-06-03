@@ -13,6 +13,8 @@ router.get("/atualizarQtd/:idUsuario", function (req, res) {
 
 router.get("/listarGenero", formularioController.listarGenero);
 
+router.get("/listarLivro", formularioController.listarLivro);
+
 router.post("/enviar", function (req, res) {
     formularioController.enviar(req, res);
 });

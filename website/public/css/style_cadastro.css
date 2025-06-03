@@ -131,3 +131,17 @@ header{
   font-weight: 500;
   font-size: 18px;
 }
+
+.loading-div {
+  width: 50px;
+  display: none;
+}
+
+.loading-div img {
+  height: 50px;
+  width: 50px;
+}
+
+#div_erros_login {
+  display: none
+}
