@@ -30,7 +30,7 @@ const livros = [
         "genero": ["Autobiografia", "Literatura Cristã"]
     },
     {
-        "capa": `<img src="./img/livros/trilogia_cosmica.png" alt="Livro Além do Planeta Silencioso - Trilogia Cósmica">`,
+        "capa": `<img src="./img/livros/trilogia_cosmica.PNG" alt="Livro Além do Planeta Silencioso - Trilogia Cósmica">`,
         "titulo": "Além do Planeta Silencioso",
         "genero": ["Ficção Científica"]
     },

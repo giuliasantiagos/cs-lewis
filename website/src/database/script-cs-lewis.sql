@@ -14,5 +14,6 @@ fkusuario int,
 livro_favorito varchar(60),
 genero_favorito varchar(45),
 qtdLidos int,
+tempo datetime,
 constraint fk_usuario foreign key (fkusuario) references usuario(idusuario)
 );

@@ -1,6 +1,5 @@
 b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-
 ///////// LISTAR QTD /////////
 
 function listarQtd(){
@@ -35,11 +34,9 @@ function plotarGraficoQtd(resposta, idUsuario) {
     console.log("plotarGrafico");
     console.log('iniciando plotagem do gráfico...');
 
-    // Criando estrutura para plotar gráfico - labels
     let labels = ['Lidos', 'Não lidos'];
     let dados = [];
 
-    // Criando estrutura para plotar gráfico - dados
     const config = {
         type: 'doughnut',
         data: {
@@ -94,7 +91,6 @@ function plotarGraficoQtd(resposta, idUsuario) {
     );
 
 }
-
 
 
 ///////// LISTAR GÊNERO /////////

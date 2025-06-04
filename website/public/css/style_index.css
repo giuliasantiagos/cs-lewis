@@ -11,6 +11,12 @@
     --cinza: #3E3E3E;
 }
 
+.italianno-regular {
+    font-family: "Italianno", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }  
+
 html{
     scroll-behavior: smooth;
 }

@@ -7,10 +7,6 @@ router.get("/listarQtd/:idUsuario", function (req, res){
     formularioController.listarQtd(req, res);
 });
 
-router.get("/atualizarQtd/:idUsuario", function (req, res) {
-    formularioController.atualizarQtd(req, res);
-});
-
 router.get("/listarGenero", formularioController.listarGenero);
 
 router.get("/listarLivro", formularioController.listarLivro);
