@@ -8,7 +8,7 @@
 
 ## Protótipo do website
 - Página Inicial
-![Página Inicial](website/public/img/prototipo-website/pagina_inicial.PNG)
+![Página Inicial](website/public/img/prototipo-website/pagina_inicial.png)
 
 - Vida do autor
 ![Vida do autor](website/public/img/prototipo-website/vida_lewis.PNG)
