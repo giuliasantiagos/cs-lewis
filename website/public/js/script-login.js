@@ -41,7 +41,7 @@ function entrar() {
                     
                     setTimeout(function () {
                         window.location = "./formulario.html";
-                    }, 1000); // apenas para exibir o loading
+                    }, 1000); 
 
                 }); 
 
